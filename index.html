@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umberto Di Laudo — Data Scientist & Physicist</title>
+
+    <!-- Google Fonts: two elegant fonts for headings and body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+    <!-- Icons: Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Our stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============================================================
+         NAVBAR — Fixed navigation bar at the top
+         ============================================================ -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <!-- Logo / Initials -->
+            <a href="#hero" class="nav-logo">UDL</a>
+
+            <!-- Desktop navigation links -->
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <!-- Light/dark theme toggle button -->
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i data-lucide="moon" class="icon-moon"></i>
+                <i data-lucide="sun" class="icon-sun"></i>
+            </button>
+
+            <!-- Hamburger menu for mobile -->
+            <button id="menu-toggle" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile menu (opens when hamburger is clicked) -->
+        <div id="mobile-menu">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#publications">Publications</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         HERO SECTION — The first thing you see when opening the site
+         ============================================================ -->
+    <section id="hero">
+        <!-- Animated particle background (managed by JS) -->
+        <canvas id="particles-canvas"></canvas>
+
+        <div class="hero-content">
+            <!-- Greeting with typing effect -->
+            <p class="hero-greeting">Hi, my name is</p>
+
+            <!-- Large name with gradient -->
+            <h1 class="hero-name">
+                <span class="gradient-text">Umberto Di Laudo</span>
+            </h1>
+
+            <!-- Subtitle with rotating "role" -->
+            <p class="hero-title">
+                <span id="typed-text"></span><span class="cursor">|</span>
+            </p>
+
+            <!-- Short description -->
+            <p class="hero-description">
+                I'm a Data Scientist and Physicist with a passion for applying machine learning to real-world problems. I hold a PhD in Data Science & Artificial Intelligence from the University of Trieste.
+            </p>
+
+            <!-- Call-to-action buttons -->
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i data-lucide="mail"></i>
+                    Get in Touch
+                </a>
+                <a href="#education" class="btn btn-secondary">
+                    <i data-lucide="graduation-cap"></i>
+                    My Background
+                </a>
+                <!-- Opens the CV PDF in a new tab (view, not download) -->
+                <a href="CV/CV_Umberto_Di_Laudo.pdf" target="_blank" class="btn btn-secondary">
+                    <i data-lucide="file-text"></i>
+                    View CV
+                </a>
+            </div>
+
+            <!-- Social links -->
+            <div class="hero-socials">
+                <a href="https://github.com/udilaudo/" target="_blank" aria-label="GitHub">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://linkedin.com/in/umbertodilaudo/" target="_blank" aria-label="LinkedIn">
+                    <i data-lucide="linkedin"></i>
+                </a>
+                <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank" aria-label="Google Scholar">
+                    <i data-lucide="book-open"></i>
+                </a>
+                <a href="mailto:umbertodilaudo@gmail.com" aria-label="Email">
+                    <i data-lucide="mail"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Animated "scroll down" arrow -->
+        <a href="#about" class="scroll-indicator">
+            <i data-lucide="chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- ============================================================
+         ABOUT — "About Me" section
+         ============================================================ -->
+    <section id="about" class="section">
+        <div class="container">
+            <!-- Section title -->
+            <h2 class="section-title" data-aos>
+                <span class="section-number">01.</span> About Me
+            </h2>
+
+            <div class="about-grid">
+                <!-- Profile photo with decorative border -->
+                <div class="about-image" data-aos>
+                    <div class="image-wrapper">
+                        <!-- Replace "me3.jpeg" with your actual photo filename -->
+                        <img src="photo/me.jpeg" alt="Umberto Di Laudo">
+                    </div>
+                </div>
+
+                <!-- Bio text -->
+                <div class="about-text" data-aos>
+                    <p>
+                        I am a researcher and data scientist with a solid background in
+                        <strong>Physics</strong> and a PhD in <strong>Data Science & Artificial Intelligence</strong>.
+                    </p>
+                    <p>
+                        I work on machine learning and mathematical modeling, combining theoretical thinking with practical
+                        Python implementation to solve complex, data-driven problems. My work includes GIS-based marine seabed
+                        analysis using ML/DL for image classification and semantic segmentation, as well as experience
+                        with Physics-Informed Neural Networks (PINNs) for differential equation modeling.
+                    </p>
+
+
+                    <!-- Quick info cards -->
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Trieste, Italy</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i data-lucide="briefcase"></i>
+                            <div>
+                                <span class="info-label">Role</span>
+                                <span class="info-value">Data Scientist</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i data-lucide="languages"></i>
+                            <div>
+                                <span class="info-label">Languages</span>
+                                <span class="info-value">Italian, English</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i data-lucide="heart"></i>
+                            <div>
+                                <span class="info-label">Interests</span>
+                                <span class="info-value">AI, Physics, Football, Chess</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         EDUCATION — Vertical timeline of academic background
+         ============================================================ -->
+    <section id="education" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title" data-aos>
+                <span class="section-number">02.</span> Education
+            </h2>
+
+            <!-- Vertical timeline -->
+            <div class="timeline">
+
+                <!-- PhD -->
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">2022 — 2025</div>
+                        <h3>PhD</h3>
+                        <h4>Data Science and Artificial Intelligence</h4>
+                        <p class="timeline-institution">
+                            <i data-lucide="building-2"></i>
+                            University of Trieste, Italy
+                        </p>
+                        <p>
+                            Thesis: <em>"Machine Learning for Automated Recognition of Seabed Morphologies"</em>
+                        </p>
+                        <p>
+                            Research focus: developed novel machine learning algorithms for the classification of seabed morphologies
+                            using multibeam echosounder data, achieving state-of-the-art performance and providing new insights
+                            into underwater geological processes.
+                        </p>
+                        <a href="https://hdl.handle.net/20.500.14242/354586" class="thesis-link">
+                            <i data-lucide="file-text"></i>
+                            Read the PhD thesis
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Master's Degree -->
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot">
+                        <i data-lucide="graduation-cap"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">2019 — 2022</div>
+                        <h3>Master's Degree</h3>
+                        <h4>Theoretical Physics</h4>
+                        <p class="timeline-institution">
+                            <i data-lucide="building-2"></i>
+                            Alma Mater Studiorum - University of Bologna, Italy
+                        </p>
+                        <p>
+                            Thesis: <em>"Deconfined Quantum Criticality"</em>
+                        </p>
+                        <p>
+                            Grade: <strong>110/110</strong>
+                        </p>
+                        <a href="https://amslaurea.unibo.it/id/eprint/25125/1/Deconfined%20quantum%20criticality.pdf" class="thesis-link">
+                            <i data-lucide="file-text"></i>
+                            Read the Master's thesis
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bachelor's Degree -->
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot">
+                        <i data-lucide="book-open"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">2016 — 2019</div>
+                        <h3>Bachelor's Degree</h3>
+                        <h4>Physics</h4>
+                        <p class="timeline-institution">
+                            <i data-lucide="building-2"></i>
+                            Alma Mater Studiorum - University of Bologna, Italy
+                        </p>
+                        <p>
+                            Thesis: <em>"Statistica Frazionaria e Anioni"</em>
+                        </p>
+                        <p>
+                            Grade: <strong>110/110</strong>
+                        </p>
+                        <a href="https://amslaurea.unibo.it/id/eprint/18721/1/Statistica%20frazionaria%20e%20anioni%20-%20Umberto%20Di%20Laudo.pdf" class="thesis-link">
+                            <i data-lucide="file-text"></i>
+                            Read the Bachelor's thesis
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS — Technical skills displayed as clean tags (no bars)
+         ============================================================ -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos>
+                <span class="section-number">03.</span> Skills
+            </h2>
+
+            <div class="skills-grid">
+
+                <!-- Category: Programming Languages -->
+                <div class="skill-category" data-aos>
+                    <div class="skill-category-header">
+                        <i data-lucide="code-2"></i>
+                        <h3>Languages</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Category: Machine Learning & AI -->
+                <div class="skill-category" data-aos>
+                    <div class="skill-category-header">
+                        <i data-lucide="brain"></i>
+                        <h3>ML & AI</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Computer Vision</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Physics-Informed Neural Networks</span>
+                    </div>
+                </div>
+
+                <!-- Category: Tools -->
+                <div class="skill-category" data-aos>
+                    <div class="skill-category-header">
+                        <i data-lucide="wrench"></i>
+                        <h3>Tools</h3>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Bash</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PUBLICATIONS — Publications & Projects
+         ============================================================ -->
+    <section id="publications" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title" data-aos>
+                <span class="section-number">04.</span> Publications & Projects
+            </h2>
+
+            <div class="publications-grid">
+
+                <!-- Publication 1 -->
+                <article class="pub-card" data-aos>
+                    <div class="pub-card-tag">Paper</div>
+                    <h3>Machine Learning for Automated Seabed Mapping</h3>
+                    <p class="pub-authors">U. Di Laudo, S. Ceramicola, L. Manzoni</p>
+                    <p class="pub-journal">Ital-IA - Thematic Workshop, 2024</p>
+                    <p class="pub-description">
+                        We present a novel machine learning framework for the automated classification of seabed morphologies using multibeam echosounder data.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://ricerca.ogs.it/bitstream/20.500.14083/39423/1/556.pdf" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
+                    </div>
+                </article>
+
+                <!-- Publication 2 -->
+                <article class="pub-card" data-aos>
+                    <div class="pub-card-tag">Paper</div>
+                    <h3>Machine Learning methods for the Atmosphere, the Ocean, and the Seabed</h3>
+                    <p class="pub-authors">Valentina Blasone, Umberto Di Laudo, Gloria Pietropolli, Luca Bortolussi, Silvia Ceramicola, Gianpiero Cossarini, Luca Manzoni</p>
+                    <p class="pub-journal">Ital-IA - Thematic Workshop, 2023</p>
+                    <p class="pub-description">
+                        A review of machine learning applications in atmospheric, oceanic, and seabed data analysis.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://ceur-ws.org/Vol-3486/111.pdf" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
+                    </div>
+                </article>
+
+                <!-- Publication 3 -->
+                <article class="pub-card" data-aos>
+                    <div class="pub-card-tag">Paper</div>
+                    <h3>Re-assessing marine geohazards along the Calabrian continental margin in southern Italy</h3>
+                    <p class="pub-authors">Ceramicola, S., Markezic, N., Forte, E., Bianchini, M., Chiocci, F., Di Laudo, U., Manzoni, L., Cartigny, M., Huvenne, V., Ferraccioli, F.</p>
+                    <p class="pub-journal">XXVIII General Assembly of the International Union of Geodesy and Geophysics (IUGG) - 2023</p>
+                    <p class="pub-description">
+                        We present a comprehensive re-assessment of marine geohazards along the Calabrian continental margin in southern Italy, integrating new multibeam echosounder data with existing geological and geophysical datasets to identify potential risks and inform mitigation strategies.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://doi.org/10.57757/IUGG23-4945" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
+                    </div>
+                </article>
+
+                <!-- Project 1 -->
+                <article class="pub-card" data-aos>
+                    <div class="pub-card-tag project-tag">Project</div>
+                    <h3>Personal Wallet Manager</h3>
+                    <p class="pub-authors">Open Source</p>
+                    <p class="pub-description">
+                        This repository provides a personal wallet manager application with a web-based interface using Streamlit, a Telegram bot interface, and a graphical user interface (GUI). The application allows users to add their expenses categorized into different types and generate statistical reports, such as bar and pie charts, for various time periods.
+                    </p>
+                    <div class="pub-links">
+                        <a href="https://github.com/udilaudo/money" class="pub-link"><i data-lucide="github"></i> GitHub</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT — Contact section with form
+         ============================================================ -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos>
+                <span class="section-number">05.</span> Contact
+            </h2>
+
+            <div class="contact-grid">
+
+                <!-- Info text -->
+                <div class="contact-info" data-aos>
+                    <h3>Let's Talk!</h3>
+                    <p>
+                        Interested in collaborating, have questions about my research,
+                        or just want to chat? Feel free to reach out!
+                    </p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <span class="contact-label">Location</span>
+                                <span>Trieste, Italy</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="building-2"></i>
+                            <div>
+                                <span class="contact-label">Affiliation</span>
+                                <span>University of Trieste</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact form -->
+                <form id="contact-form" class="contact-form" data-aos>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i data-lucide="send"></i>
+                        Send Message
+                    </button>
+                    <!-- Success message (hidden, shown by JS) -->
+                    <div id="form-success" class="form-success hidden">
+                        <i data-lucide="check-circle"></i>
+                        <p>Message sent successfully! I'll get back to you soon.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Umberto Di Laudo. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/udilaudo/" target="_blank"><i data-lucide="github"></i></a>
+                    <a href="https://linkedin.com/in/umbertodilaudo/" target="_blank"><i data-lucide="linkedin"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank"><i data-lucide="book-open"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- "Back to top" button that appears on scroll -->
+    <button id="back-to-top" aria-label="Back to top">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Our JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
