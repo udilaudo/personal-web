@@ -812,6 +812,11 @@ body.dark .icon-sun { display: block; }
     background: rgba(236, 72, 153, 0.1);
     color: var(--color-accent);
 }
+/* Tag per le conferenze / talk */
+.talk-tag {
+    background: rgba(14, 165, 133, 0.1);
+    color: #0ea585;
+}
 
 .pub-card h3 {
     font-size: 1.1rem;
