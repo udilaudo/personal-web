@@ -311,6 +311,7 @@
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">C++</span>
                         <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Bash</span>
                     </div>
                 </div>
 
@@ -325,6 +326,7 @@
                         <span class="skill-tag">Computer Vision</span>
                         <span class="skill-tag">Deep Learning</span>
                         <span class="skill-tag">Physics-Informed Neural Networks</span>
+                        <span class="skill-tag">Graph Neural Networks</span>
                     </div>
                 </div>
 
@@ -336,8 +338,8 @@
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">HPC</span>
+                        <span class="skill-tag">Linux</span>
                     </div>
                 </div>
 
@@ -363,7 +365,7 @@
                     <p class="pub-authors">U. Di Laudo, S. Ceramicola, L. Manzoni</p>
                     <p class="pub-journal">Ital-IA - Thematic Workshop, 2024</p>
                     <p class="pub-description">
-                        We present a novel machine learning framework for the automated classification of seabed morphologies using multibeam echosounder data.
+                        We present a novel machine learning framework for the automated classification and segmentation of seabed morphologies using multibeam echosounder data.
                     </p>
                     <div class="pub-links">
                         <a href="https://ricerca.ogs.it/bitstream/20.500.14083/39423/1/556.pdf" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
@@ -391,7 +393,7 @@
                     <p class="pub-authors">Ceramicola, S., Markezic, N., Forte, E., Bianchini, M., Chiocci, F., Di Laudo, U., Manzoni, L., Cartigny, M., Huvenne, V., Ferraccioli, F.</p>
                     <p class="pub-journal">XXVIII General Assembly of the International Union of Geodesy and Geophysics (IUGG) - 2023</p>
                     <p class="pub-description">
-                        We present a comprehensive re-assessment of marine geohazards along the Calabrian continental margin in southern Italy, integrating new multibeam echosounder data with existing geological and geophysical datasets to identify potential risks and inform mitigation strategies.
+                        This study focuses on the Squillace submarine canyon and presents new high-resolution geophysical surveys (EUROFLEETS+ 2023) to assess slope instability. The project also aims to build a geodatabase of submarine features and apply machine learning methods for geohazard analysis across southern Italian margins.
                     </p>
                     <div class="pub-links">
                         <a href="https://doi.org/10.57757/IUGG23-4945" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
@@ -404,7 +406,7 @@
                     <h3>Personal Wallet Manager</h3>
                     <p class="pub-authors">Open Source</p>
                     <p class="pub-description">
-                        This repository provides a personal wallet manager application with a web-based interface using Streamlit, a Telegram bot interface, and a graphical user interface (GUI). The application allows users to add their expenses categorized into different types and generate statistical reports, such as bar and pie charts, for various time periods.
+                        This repository provides a personal wallet manager application with a web-app interface (HTML/JS/CSS), a Telegram bot interface, and a graphical user interface (GUI) with Tkinter. The application allows users to add their expenses categorized into different types and generate statistical reports, such as bar and pie charts, for various time periods.
                     </p>
                     <div class="pub-links">
                         <a href="https://github.com/udilaudo/money" class="pub-link"><i data-lucide="github"></i> GitHub</a>
@@ -424,65 +426,37 @@
                 <span class="section-number">05.</span> Contact
             </h2>
 
-            <div class="contact-grid">
+            <!-- Testo introduttivo + contatti diretti (no form, sito statico senza backend) -->
+            <div class="contact-content" data-aos>
+                <h3>Let's Talk!</h3>
+                <p>
+                    Interested in collaborating, have questions about my research,
+                    or just want to chat? Feel free to reach out!
+                </p>
 
-                <!-- Info text -->
-                <div class="contact-info" data-aos>
-                    <h3>Let's Talk!</h3>
-                    <p>
-                        Interested in collaborating, have questions about my research,
-                        or just want to chat? Feel free to reach out!
-                    </p>
-
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i data-lucide="mail"></i>
-                            <div>
-                                <span class="contact-label">Email</span>
-                                <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
-                            </div>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div>
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
                         </div>
-                        <div class="contact-item">
-                            <i data-lucide="map-pin"></i>
-                            <div>
-                                <span class="contact-label">Location</span>
-                                <span>Trieste, Italy</span>
-                            </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <div>
+                            <span class="contact-label">Location</span>
+                            <span>Trieste, Italy</span>
                         </div>
-                        <div class="contact-item">
-                            <i data-lucide="building-2"></i>
-                            <div>
-                                <span class="contact-label">Affiliation</span>
-                                <span>University of Trieste</span>
-                            </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="building-2"></i>
+                        <div>
+                            <span class="contact-label">Affiliation</span>
+                            <span>University of Trieste</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Contact form -->
-                <form id="contact-form" class="contact-form" data-aos>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <i data-lucide="send"></i>
-                        Send Message
-                    </button>
-                    <!-- Success message (hidden, shown by JS) -->
-                    <div id="form-success" class="form-success hidden">
-                        <i data-lucide="check-circle"></i>
-                        <p>Message sent successfully! I'll get back to you soon.</p>
-                    </div>
-                </form>
             </div>
         </div>
     </section>

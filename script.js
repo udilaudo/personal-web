@@ -353,31 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ----------------------------------------------------------
-    // 8. FORM DI CONTATTO (SIMULATO)
-    // Quando si invia il form, mostriamo un messaggio di conferma.
-    // NOTA: Per un form reale, servirebbe un backend (es. Formspree,
-    // Netlify Forms, o un server proprio).
-    // ----------------------------------------------------------
-
-    const contactForm = document.getElementById('contact-form');
-    const formSuccess = document.getElementById('form-success');
-
-    contactForm.addEventListener('submit', (e) => {
-        // Previeni l'invio reale del form (non c'è un backend)
-        e.preventDefault();
-
-        // Mostra il messaggio di successo
-        formSuccess.classList.remove('hidden');
-
-        // Resetta il form (svuota tutti i campi)
-        contactForm.reset();
-
-        // Nascondi il messaggio dopo 5 secondi
-        setTimeout(() => {
-            formSuccess.classList.add('hidden');
-        }, 5000);
-    });
 
     // ----------------------------------------------------------
     // BONUS: EFFETTO PARALLASSE LEGGERO SUL HERO

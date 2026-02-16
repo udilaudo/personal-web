@@ -11,10 +11,10 @@
     --color-surface: #ffffff;           /* Sfondo card/pannelli */
     --color-text: #1a1a2e;             /* Testo principale */
     --color-text-secondary: #6b7280;   /* Testo secondario */
-    --color-primary: #6366f1;          /* Colore accento principale (indaco) */
-    --color-primary-light: #818cf8;    /* Versione chiara del primario */
-    --color-primary-dark: #4f46e5;     /* Versione scura del primario */
-    --color-accent: #ec4899;           /* Colore accento secondario (rosa) */
+    --color-primary: #10b981;          /* Colore accento principale (verde smeraldo) */
+    --color-primary-light: #34d399;    /* Versione chiara del primario */
+    --color-primary-dark: #059669;     /* Versione scura del primario */
+    --color-accent: #06b6d4;           /* Colore accento secondario (ciano/teal) */
     --color-border: #e5e7eb;           /* Bordi */
     --color-shadow: rgba(0, 0, 0, 0.08); /* Ombre */
     --color-nav-bg: rgba(248, 249, 250, 0.85); /* Sfondo navbar trasparente */
@@ -431,11 +431,6 @@ body.dark .icon-sun { display: block; }
     transform: translateY(-2px);
 }
 
-/* Bottone a larghezza piena */
-.btn-full {
-    width: 100%;
-    justify-content: center;
-}
 
 /* ============================================================
    SEZIONI — Stili comuni a tutte le sezioni
@@ -873,29 +868,30 @@ body.dark .icon-sun { display: block; }
 /* ============================================================
    CONTACT — Sezione contatti
    ============================================================ */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
+/* Layout centrato per la sezione contatti (senza form, sito statico) */
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-.contact-info h3 {
+.contact-content h3 {
     font-family: var(--font-display);
     font-size: 2rem;
     margin-bottom: 16px;
 }
-.contact-info > p {
+.contact-content > p {
     color: var(--color-text-secondary);
     margin-bottom: 32px;
     font-size: 1.05rem;
 }
 
-/* Dettagli contatto (email, sede, affiliazione) */
+/* Dettagli contatto (email, sede, affiliazione) — centrati */
 .contact-details {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     gap: 20px;
+    text-align: left;
 }
 .contact-item {
     display: flex;
@@ -919,59 +915,6 @@ body.dark .icon-sun { display: block; }
     color: var(--color-text);
 }
 
-/* Form di contatto */
-.contact-form {
-    background: var(--color-surface);
-    padding: 32px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--color-border);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-}
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    transition: all var(--transition);
-}
-/* Quando il campo è attivo/selezionato */
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-}
-
-/* Messaggio di conferma (nascosto) */
-.form-success {
-    text-align: center;
-    padding: 20px;
-    margin-top: 16px;
-    background: rgba(34, 197, 94, 0.1);
-    border-radius: var(--radius-sm);
-    color: #22c55e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-.hidden {
-    display: none !important;
-}
 
 /* ============================================================
    FOOTER — Piede pagina
@@ -1095,10 +1038,6 @@ footer {
     }
     .publications-grid {
         grid-template-columns: 1fr;
-    }
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
     }
 }
 
