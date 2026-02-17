@@ -790,21 +790,24 @@ body.dark .icon-sun { display: block; }
     box-shadow: 0 8px 30px var(--color-shadow);
 }
 
-/* Striscia decorativa in alto: si espande dal centro al hover e si ritira all'uscita */
+/* Striscia decorativa in alto: si espande dal centro al hover e si ritira all'uscita.
+   Usiamo transform: scaleX() invece di width/left perché è più performante
+   (usa la GPU) e più compatibile con i minificatori CSS di Cloudflare. */
 .pub-card::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 50%;                              /* Parte dal centro */
-    width: 0;                               /* Larghezza 0 di default */
+    left: 0;
+    width: 100%;                            /* Larghezza piena, ma scalata a 0 */
     height: 3px;
     background: var(--gradient);
-    transition: width 0.4s ease, left 0.4s ease;  /* Animazione fluida */
+    transform: scaleX(0);                   /* Nascosta: scala orizzontale a 0 */
+    transform-origin: center;               /* Si espande dal centro */
+    transition: transform 0.4s ease;        /* Animazione fluida */
 }
 /* Al hover: la linea si espande dal centro fino a coprire tutta la larghezza */
 .pub-card:hover::before {
-    width: 100%;
-    left: 0;
+    transform: scaleX(1);                   /* Mostra: scala orizzontale a 1 (piena) */
 }
 
 /* Tag "Paper" / "Progetto" */
