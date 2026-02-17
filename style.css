@@ -699,64 +699,70 @@ body.dark .icon-sun { display: block; }
 }
 
 /* ============================================================
-   SKILLS — Professional tag-based layout (no percentages)
+   SKILLS — Layout verticale a flusso centrato
+   Ogni categoria è un blocco con label inline + tag pill
    ============================================================ */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);  /* Three equal columns */
-    gap: 32px;
+
+/* Contenitore generale: blocchi impilati verticalmente, centrati */
+.skills-flow {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-/* Each skill category card */
-.skill-category {
-    background: var(--color-surface);
-    border-radius: var(--radius-md);
-    padding: 28px;
-    border: 1px solid var(--color-border);
-    transition: all var(--transition);
-}
-.skill-category:hover {
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 30px var(--color-shadow);
+/* Singolo blocco categoria */
+.skill-block {
+    text-align: center;
 }
 
-/* Category header with icon and title */
-.skill-category-header {
+/* Label della categoria: icona + testo, centrata con linee decorative ai lati */
+.skill-block-label {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--color-border);
-}
-.skill-category-header i {
     color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
-.skill-category-header h3 {
-    font-size: 1.1rem;
+/* Linee decorative ai lati della label (tramite ::before e ::after) */
+.skill-block-label::before,
+.skill-block-label::after {
+    content: '';
+    flex: 1;
+    max-width: 80px;
+    height: 1px;
+    background: var(--color-border);
 }
 
-/* Skills displayed as clean tags */
+/* Tag delle skill: pill arrotondati, centrati e ben spaziati */
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    gap: 12px;
 }
 .skill-tag {
-    padding: 8px 16px;
-    background: var(--color-bg);
+    padding: 10px 22px;
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: 6px;
-    font-size: 0.88rem;
+    border-radius: 50px;                    /* Forma pill completamente arrotondata */
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--color-text);
     transition: all var(--transition);
+    box-shadow: 0 2px 8px var(--color-shadow);
 }
 .skill-tag:hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
-    background: rgba(99, 102, 241, 0.06);
-    transform: translateY(-1px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px var(--color-shadow);
 }
 
 /* ============================================================
@@ -774,25 +780,31 @@ body.dark .icon-sun { display: block; }
     border-radius: var(--radius-md);
     padding: 28px;
     border: 1px solid var(--color-border);
-    transition: all var(--transition);
+    /* Transizione morbida per bordo e ombra (no transform brusco) */
+    transition: border-color var(--transition), box-shadow 0.4s ease;
     position: relative;
     overflow: hidden;
 }
 .pub-card:hover {
     border-color: var(--color-primary);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px var(--color-shadow);
+    box-shadow: 0 8px 30px var(--color-shadow);
 }
 
-/* Striscia decorativa in alto sulla card */
+/* Striscia decorativa in alto: si espande dal centro al hover e si ritira all'uscita */
 .pub-card::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;                              /* Parte dal centro */
+    width: 0;                               /* Larghezza 0 di default */
     height: 3px;
     background: var(--gradient);
+    transition: width 0.4s ease, left 0.4s ease;  /* Animazione fluida */
+}
+/* Al hover: la linea si espande dal centro fino a coprire tutta la larghezza */
+.pub-card:hover::before {
+    width: 100%;
+    left: 0;
 }
 
 /* Tag "Paper" / "Progetto" */
@@ -1038,8 +1050,9 @@ footer {
         max-width: 300px;
         margin: 0 auto;
     }
-    .skills-grid {
-        grid-template-columns: 1fr;    /* Stack on tablet/mobile */
+    /* Skills: riduci larghezza massima su tablet */
+    .skills-flow {
+        max-width: 100%;
     }
     .publications-grid {
         grid-template-columns: 1fr;
