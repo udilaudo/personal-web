@@ -1,0 +1,8 @@
+CLAUDE.md
+.claude
+# ignora anche il file .gitignore
+.gitignore
+
+# Font e vendors locali (file pesanti, non servono nel repo)
+fonts/
+vendors/
