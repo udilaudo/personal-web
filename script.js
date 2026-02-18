@@ -86,17 +86,28 @@ document.addEventListener('DOMContentLoaded', () => {
     typeText();
 
     // ----------------------------------------------------------
-    // 3. PARTICELLE ANIMATE — Sfondo della Hero Section
-    // Creiamo un canvas con particelle che si muovono e
-    // si collegano tra loro con linee quando sono vicine.
+    // 3. PARTICELLE INTERATTIVE — Sfondo della Hero Section
+    // Come le vecchie particelle, ma con interazione col mouse:
+    //   - Le particelle vicine al cursore vengono attratte verso di esso
+    //   - Si disegnano linee tra particelle vicine tra loro
+    //   - Si disegnano linee tra le particelle e il cursore (quando vicino)
     // ----------------------------------------------------------
 
     const canvas = document.getElementById('particles-canvas');
     // Il "contesto 2D" è ciò che ci permette di disegnare sul canvas
     const ctx = canvas.getContext('2d');
 
-    // Array che conterrà tutte le nostre particelle
+    // Array che conterrà tutte le particelle
     let particles = [];
+
+    // Posizione del mouse sul canvas (null = fuori dalla finestra)
+    const mouse = { x: null, y: null };
+
+    // Distanza entro cui il mouse attrae le particelle (in pixel)
+    const MOUSE_RADIUS = 150;
+
+    // Distanza entro cui due particelle si collegano con una linea
+    const LINK_DIST = 120;
 
     /**
      * Ridimensiona il canvas per occupare tutta la hero section.
@@ -108,98 +119,144 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Crea una singola particella con posizione e velocità casuali.
-     * Ogni particella è un oggetto con:
-     * - x, y: posizione
-     * - vx, vy: velocità (direzione e rapidità del movimento)
-     * - radius: dimensione del cerchio
-     * - opacity: trasparenza
+     * Crea una singola particella con posizione, velocità e dimensione casuali.
+     * Le particelle si muovono liberamente e rimbalzano da un lato all'altro.
      */
     function createParticle() {
         return {
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.5,  // Velocità casuale tra -0.25 e +0.25
-            vy: (Math.random() - 0.5) * 0.5,
-            radius: Math.random() * 2 + 1,     // Raggio tra 1 e 3 pixel
-            opacity: Math.random() * 0.5 + 0.2 // Opacità tra 0.2 e 0.7
+            vx: (Math.random() - 0.5) * 0.25,   // velocità base casuale
+            vy: (Math.random() - 0.5) * 0.25,
+            radius: Math.random() * 2 + 1,      // raggio tra 1 e 3 px
+            opacity: Math.random() * 0.5 + 0.2, // opacità tra 0.2 e 0.7
         };
     }
 
     /**
      * Inizializza le particelle.
-     * Il numero di particelle dipende dalla dimensione dello schermo
-     * (più lo schermo è grande, più particelle creiamo).
+     * Il numero dipende dall'area del canvas, limitato tra 40 e 120.
      */
     function initParticles() {
         particles = [];
-        // Calcola il numero di particelle in base all'area dello schermo
         const count = Math.floor((canvas.width * canvas.height) / 15000);
-        // Limita il numero tra 30 e 100
-        const particleCount = Math.min(Math.max(count, 30), 100);
+        const particleCount = Math.min(Math.max(count, 40), 120);
         for (let i = 0; i < particleCount; i++) {
             particles.push(createParticle());
         }
     }
 
     /**
-     * Disegna e anima le particelle.
-     * Questa funzione viene chiamata circa 60 volte al secondo
-     * grazie a requestAnimationFrame, creando un'animazione fluida.
+     * Loop principale dell'animazione — chiamata ~60 volte al secondo.
+     *
+     * Per ogni particella:
+     *   1. Calcola se il mouse è vicino → applica attrazione
+     *   2. Altrimenti, torna lentamente alla posizione originale (effetto elastico)
+     *   3. Aggiorna la posizione con la velocità
+     *   4. Disegna la particella
+     *   5. Disegna linee verso particelle vicine e verso il mouse
      */
     function animateParticles() {
-        // Pulisci il canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Determina il colore delle particelle in base al tema
+        // Scegli il colore in base al tema chiaro/scuro
         const isDark = document.body.classList.contains('dark');
-        const particleColor = isDark ? '148, 163, 184' : '99, 102, 241';
+        const color = isDark ? '148, 163, 184' : '99, 102, 241';
 
-        // Per ogni particella...
         particles.forEach((p, i) => {
-            // Aggiorna la posizione in base alla velocità
+
+            // ---- INTERAZIONE CON IL MOUSE ----
+            if (mouse.x !== null) {
+                const dx = mouse.x - p.x;
+                const dy = mouse.y - p.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < MOUSE_RADIUS && dist > 0) {
+                    // Forza di attrazione proporzionale alla vicinanza
+                    const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS; // tra 0 e 1
+                    p.vx += (dx / dist) * force * 0.6;
+                    p.vy += (dy / dist) * force * 0.6;
+                    // Attrito solo quando il mouse spinge, per non accumulare
+                    // troppa velocità e far impazzire le particelle
+                    p.vx *= 0.92;
+                    p.vy *= 0.92;
+                }
+            }
+
+            // Aggiorna la posizione con la velocità corrente
             p.x += p.vx;
             p.y += p.vy;
 
-            // Se la particella esce dal canvas, la facciamo rientrare dal lato opposto
+            // ---- WRAPPING AI BORDI ----
+            // Se la particella esce dal canvas, rientra dal lato opposto
             if (p.x < 0) p.x = canvas.width;
             if (p.x > canvas.width) p.x = 0;
             if (p.y < 0) p.y = canvas.height;
             if (p.y > canvas.height) p.y = 0;
 
-            // Disegna la particella come un cerchio
+            // ---- DISEGNA LA PARTICELLA ----
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${particleColor}, ${p.opacity})`;
+            ctx.fillStyle = `rgba(${color}, ${p.opacity})`;
             ctx.fill();
 
-            // Disegna linee tra particelle vicine
+            // ---- LINEE TRA PARTICELLE VICINE ----
+            // Confronta questa particella con tutte le successive
+            // (i >= j evita di disegnare la stessa linea due volte)
             particles.forEach((p2, j) => {
-                // Evita di confrontare una particella con se stessa
                 if (i >= j) return;
-
-                // Calcola la distanza tra le due particelle
                 const dx = p.x - p2.x;
                 const dy = p.y - p2.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Se sono abbastanza vicine (meno di 120px), traccia una linea
-                if (dist < 120) {
+                if (dist < LINK_DIST) {
+                    // La linea diventa più trasparente con la distanza
+                    const opacity = (1 - dist / LINK_DIST) * 0.2;
                     ctx.beginPath();
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(p2.x, p2.y);
-                    // La linea diventa più trasparente con la distanza
-                    const opacity = (1 - dist / 120) * 0.15;
-                    ctx.strokeStyle = `rgba(${particleColor}, ${opacity})`;
+                    ctx.strokeStyle = `rgba(${color}, ${opacity})`;
                     ctx.lineWidth = 0.5;
                     ctx.stroke();
                 }
             });
+
+            // ---- LINEE VERSO IL MOUSE ----
+            // Se la particella è nel raggio del mouse, traccia una linea
+            // verso il cursore (più luminosa di quelle tra particelle)
+            if (mouse.x !== null) {
+                const dx = p.x - mouse.x;
+                const dy = p.y - mouse.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < MOUSE_RADIUS) {
+                    const opacity = (1 - dist / MOUSE_RADIUS) * 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.strokeStyle = `rgba(${color}, ${opacity})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+                }
+            }
         });
 
-        // Richiedi il prossimo frame di animazione
         requestAnimationFrame(animateParticles);
     }
+
+    // ---- TRACCIA LA POSIZIONE DEL MOUSE SUL CANVAS ----
+    // mousemove aggiorna le coordinate; mouseleave le resetta a null
+    // così quando il mouse è fuori dalla hero non succede niente.
+    canvas.addEventListener('mousemove', e => {
+        // getBoundingClientRect() converte le coordinate finestra → canvas
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+    canvas.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
 
     // Inizializza e avvia le particelle
     resizeCanvas();
