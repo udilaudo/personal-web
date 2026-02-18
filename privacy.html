@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Umberto Di Laudo</title>
+
+    <!-- Stessi font e icone del sito principale, serviti localmente -->
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <script src="vendors/lucide.min.js"></script>
+    <link rel="stylesheet" href="style.css?v=2">
+
+    <!-- Stile aggiuntivo solo per questa pagina:
+         centra il contenuto e lo rende leggibile come un documento -->
+    <style>
+        /* Contenitore del documento: larghezza ridotta per leggibilità */
+        .privacy-page {
+            max-width: 720px;
+            margin: 120px auto 80px;  /* 120px dall'alto per non finire sotto la navbar */
+            padding: 0 24px;
+        }
+
+        /* Titolo principale della pagina */
+        .privacy-page h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            color: var(--color-heading);
+        }
+
+        /* Data di aggiornamento, in grigio sotto il titolo */
+        .privacy-page .last-updated {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 48px;
+        }
+
+        /* Titoli delle sezioni */
+        .privacy-page h2 {
+            font-size: 1.1rem;
+            margin-top: 40px;
+            margin-bottom: 12px;
+            color: var(--color-heading);
+        }
+
+        /* Testo normale delle sezioni */
+        .privacy-page p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        /* Link nel testo */
+        .privacy-page a {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        /* Bottone "torna alla home" in alto */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover {
+            opacity: 0.75;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         NAVBAR — stessa del sito principale
+         ============================================================ -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">UDL</a>
+
+            <!-- Desktop links -->
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+
+            <!-- Toggle tema chiaro/scuro -->
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i data-lucide="moon" class="icon-moon"></i>
+                <i data-lucide="sun" class="icon-sun"></i>
+            </button>
+
+            <!-- Hamburger mobile -->
+            <button id="menu-toggle" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Menu mobile -->
+        <div id="mobile-menu">
+            <a href="index.html#about">About</a>
+            <a href="index.html#education">Education</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#publications">Publications</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         CONTENUTO DELLA PRIVACY POLICY
+         ============================================================ -->
+    <main class="privacy-page">
+
+        <!-- Torna alla home -->
+        <a href="index.html" class="back-link">
+            <i data-lucide="arrow-left"></i>
+            Back to home
+        </a>
+
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: February 2026</p>
+
+        <!-- 1. CHI GESTISCE IL SITO -->
+        <h2>1. Data Controller</h2>
+        <p>
+            This website is a personal portfolio managed by <strong>Umberto Di Laudo</strong>,
+            based in Trieste, Italy. You can contact me at
+            <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>.
+        </p>
+
+        <!-- 2. DATI RACCOLTI DIRETTAMENTE -->
+        <h2>2. Data collected by this website</h2>
+        <p>
+            This website <strong>does not collect, store, or process any personal data</strong>
+            from visitors directly. There are no registration forms, no login systems,
+            and no contact forms that submit data to a server.
+        </p>
+        <p>
+            The only data stored on your device is a <strong>theme preference</strong>
+            (light or dark mode), saved in your browser's <code>localStorage</code>.
+            This information never leaves your device and is not accessible by the server.
+        </p>
+
+        <!-- 3. CLOUDFLARE -->
+        <h2>3. Cloudflare (infrastructure provider)</h2>
+        <p>
+            This website is served through <strong>Cloudflare</strong>, which acts as a
+            Content Delivery Network (CDN) and security layer. When you visit this site,
+            your request passes through Cloudflare's servers, which may process your
+            <strong>IP address</strong>, browser type, and request timestamps for the
+            purpose of delivering content and protecting against malicious traffic.
+        </p>
+        <p>
+            Cloudflare processes this data as a <strong>data processor</strong> on my behalf,
+            under its own Data Processing Addendum compliant with GDPR. Cloudflare does not
+            sell this data or use it for advertising purposes. For full details, see
+            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">
+                Cloudflare's Privacy Policy
+            </a>.
+        </p>
+        <p>
+            The legal basis for this processing is <strong>legitimate interest</strong>
+            (Art. 6(1)(f) GDPR): it is technically necessary to deliver the website
+            and protect it from abuse.
+        </p>
+
+        <!-- 4. COOKIE -->
+        <h2>4. Cookies</h2>
+        <p>
+            This website does <strong>not use cookies</strong> of any kind — no analytics
+            cookies, no advertising cookies, no tracking cookies. No cookie banner is
+            displayed because no consent is required.
+        </p>
+
+        <!-- 5. LINK ESTERNI -->
+        <h2>5. External links</h2>
+        <p>
+            This website contains links to external services (GitHub, LinkedIn, Google Scholar,
+            academic repositories). Once you leave this site, their respective privacy policies apply.
+            I have no control over and assume no responsibility for the content or privacy
+            practices of those sites.
+        </p>
+
+        <!-- 6. FONT E LIBRERIE -->
+        <h2>6. Fonts and libraries</h2>
+        <p>
+            All fonts (Inter, Playfair Display) and icon libraries (Lucide Icons) are
+            <strong>self-hosted</strong> on this website. No data is sent to Google Fonts,
+            unpkg, or any other external CDN when you visit this site.
+        </p>
+
+        <!-- 7. DIRITTI GDPR -->
+        <h2>7. Your rights under GDPR</h2>
+        <p>
+            Since this website does not collect personal data directly, there is no personal
+            data to access, correct, or delete. For any data processed by Cloudflare's
+            infrastructure, you may contact Cloudflare directly or refer to their
+            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">
+                privacy policy
+            </a>.
+        </p>
+        <p>
+            For any questions or requests, feel free to contact me at
+            <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>.
+        </p>
+
+    </main>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Umberto Di Laudo. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/udilaudo/" target="_blank"><i data-lucide="github"></i></a>
+                    <a href="https://linkedin.com/in/umbertodilaudo/" target="_blank"><i data-lucide="linkedin"></i></a>
+                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank"><i data-lucide="book-open"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPT — solo la parte necessaria per questa pagina:
+         icone Lucide, tema chiaro/scuro, navbar scroll
+         ============================================================ -->
+    <script>
+        // Inizializza le icone Lucide (stessa chiamata del sito principale)
+        lucide.createIcons();
+
+        // ---- TEMA CHIARO / SCURO ----
+        // Legge la preferenza salvata nel localStorage e la applica subito
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        }
+
+        // Bottone toggle: cambia tema e salva la scelta
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // ---- NAVBAR: sfondo quando si scrolla ----
+        // Aggiunge la classe 'scrolled' alla navbar dopo 50px di scroll
+        // (stessa logica del sito principale, per coerenza visiva)
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ---- MENU MOBILE ----
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+        // Chiudi il menu mobile quando si clicca un link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuToggle.classList.remove('open');
+            });
+        });
+    </script>
+
+</body>
+</html>
