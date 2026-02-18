@@ -178,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     p.vy += (dy / dist) * force * 0.6;
                     // Attrito solo quando il mouse spinge, per non accumulare
                     // troppa velocità e far impazzire le particelle
-                    p.vx *= 0.92;
-                    p.vy *= 0.92;
+                    p.vx *= 0.5;
+                    p.vy *= 0.5;
                 }
             }
 
