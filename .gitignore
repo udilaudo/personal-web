@@ -4,5 +4,5 @@ CLAUDE.md
 .gitignore
 
 # Font e vendors locali (file pesanti, non servono nel repo)
-fonts/
-vendors/
+fonts/*
+vendors/*
