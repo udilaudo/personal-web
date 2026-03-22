@@ -585,8 +585,9 @@
                         delivered via Cloudflare's global CDN. Cloudflare may automatically
                         set strictly necessary cookies as part of its network security,
                         bot management, and load-balancing operations. These are
-                        <strong>third-party cookies</strong> set by Cloudflare's
-                        infrastructure, not by the site owner.
+                        <strong>strictly necessary infrastructure cookies</strong>
+                        set by Cloudflare on this site's domain — not placed by the
+                        site owner, but appearing on the same domain as this website.
                     </p>
 
                     <!-- Tabella cookie Cloudflare -->
@@ -614,14 +615,15 @@
                                     <td>30 minutes (session)</td>
                                     <td>Cloudflare, Inc.</td>
                                 </tr>
-                                <!-- __cflb: load balancing, session -->
+                                <!-- __cflb: load balancing — solo con alcune funzionalità Cloudflare attive -->
                                 <tr>
                                     <td class="cookie-name">__cflb</td>
                                     <td><span class="badge-necessary">Strictly Necessary</span></td>
                                     <td>
-                                        Load balancing. Ensures that requests from
-                                        a given session are consistently routed to
-                                        the same Cloudflare edge server.
+                                        Load balancing. May be set by Cloudflare only
+                                        when specific load-balancing features are active.
+                                        Not expected on a standard Cloudflare Pages
+                                        deployment and may not appear on this site.
                                     </td>
                                     <td>Session (deleted when browser closes)</td>
                                     <td>Cloudflare, Inc.</td>
@@ -783,15 +785,17 @@
                     </ul>
 
                     <p>
-                        You can also opt out of Cloudflare's bot protection cookies
-                        by contacting Cloudflare's privacy team at
+                        For further information on Cloudflare's cookie and data practices,
+                        refer to Cloudflare's documentation at
                         <a href="https://www.cloudflare.com/privacypolicy/"
                            target="_blank" rel="noopener noreferrer">
                             cloudflare.com/privacypolicy
+                        </a>
+                        and
+                        <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/"
+                           target="_blank" rel="noopener noreferrer">
+                            Cloudflare cookie documentation
                         </a>.
-                        However, blocking Cloudflare's infrastructure cookies may result
-                        in degraded performance or security challenges when accessing
-                        Cloudflare-hosted sites.
                     </p>
                 </section>
 
@@ -859,15 +863,15 @@
                 </p>
                 <div class="footer-links">
                     <a href="https://github.com/udilaudo/"
-                       target="_blank" rel="noopener" aria-label="GitHub">
+                       target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                         <i data-lucide="github"></i>
                     </a>
                     <a href="https://linkedin.com/in/umbertodilaudo/"
-                       target="_blank" rel="noopener" aria-label="LinkedIn">
+                       target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <i data-lucide="linkedin"></i>
                     </a>
                     <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ"
-                       target="_blank" rel="noopener" aria-label="Google Scholar">
+                       target="_blank" rel="noopener noreferrer" aria-label="Google Scholar">
                         <i data-lucide="book-open"></i>
                     </a>
                 </div>
