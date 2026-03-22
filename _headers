@@ -1,0 +1,36 @@
+# Cloudflare Pages — Security Headers
+# Questo file viene letto da Cloudflare Pages al deploy e aggiunge
+# gli header HTTP di sicurezza a tutte le risposte del sito.
+# Documentazione: https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  # Impedisce al browser di "indovinare" il tipo MIME del file (MIME sniffing).
+  # Senza questo header, un file .txt contenente HTML verrebbe eseguito come HTML.
+  X-Content-Type-Options: nosniff
+
+  # Impedisce che il sito venga incorporato in un <iframe> di un altro dominio.
+  # Protegge da attacchi di clickjacking.
+  X-Frame-Options: DENY
+
+  # Controlla quante informazioni sul "referrer" vengono inviate ai siti esterni.
+  # strict-origin-when-cross-origin: invia solo l'origine (no path/query) verso siti HTTPS esterni.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Disabilita API del browser non usate dal sito.
+  # Riduce la superficie di attacco e protegge la privacy degli utenti.
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=()
+
+  # Content Security Policy (CSP): whitelist esplicita di fonti autorizzate.
+  # Il browser blocca qualsiasi risorsa non elencata qui.
+  #
+  # default-src 'self'         → per tutto il resto, solo risorse dello stesso dominio
+  # script-src                 → JS: solo script.js locale + Lucide da jsDelivr (versione fissa)
+  # style-src                  → CSS: solo style.css locale + CSS di Google Fonts
+  # font-src                   → Font WOFF2: solo Google Fonts (fonts.gstatic.com)
+  # img-src 'self' data:       → Immagini: solo locali + data URI (es. favicon inline)
+  # connect-src 'self'         → Fetch/XHR: solo stesso dominio (il sito non fa chiamate esterne)
+  # frame-src 'none'           → Nessun iframe permesso
+  # object-src 'none'          → Nessun plugin (Flash, PDF embed, ecc.)
+  # base-uri 'self'            → Impedisce injection del tag <base> per dirottare link relativi
+  # form-action 'none'         → Il sito non ha form; blocca qualsiasi submit
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'

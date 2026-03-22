@@ -1263,3 +1263,429 @@ footer {
         max-width: 100%;
     }
 }
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PAGINE LEGALI — privacy.html e cookies.html
+   Questi stili sono stati spostati qui dai blocchi <style> inline
+   delle singole pagine, per consentire una Content-Security-Policy
+   stretta (senza 'unsafe-inline').
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper: occupa tutto lo spazio sotto la navbar ── */
+.legal-page {
+    min-height: 100vh;
+}
+
+/* ── Header: area titolo + metadati del documento ── */
+.legal-header {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+    border-bottom: 1px solid var(--border);
+}
+
+.legal-header-inner {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--space-xl);
+}
+
+/* Link "← Back to home" in stile monospace / etichetta */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-xl);
+    transition: opacity var(--t-fast);
+}
+.back-link:hover { opacity: 0.65; }
+/* Ridimensiona l'icona SVG di Lucide all'interno del link */
+.back-link svg { width: 13px; height: 13px; }
+
+/* Badge tipo-documento (es. "Legal Document") */
+.legal-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-lo);
+    border: 1px solid var(--accent-md);
+    padding: 4px 10px;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-md);
+}
+
+/* Titolo principale: grande, Playfair Display, responsivo */
+.legal-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--text-hi);
+    line-height: 1.1;
+    margin-bottom: var(--space-md);
+}
+
+/* Riga metadati: data, versione, giurisdizione */
+.legal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+}
+
+.legal-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* Etichetta metadato (es. "Last Updated") */
+.legal-meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+/* Valore metadato */
+.legal-meta-value {
+    font-size: 0.88rem;
+    color: var(--text);
+}
+
+/* ── Corpo: sidebar TOC + contenuto principale ── */
+.legal-body {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+    display: grid;
+    /* Sidebar fissa a 200px, contenuto occupa il resto */
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+}
+
+/* ── Sidebar: Table of Contents ── */
+.legal-toc {
+    /* Sticky: rimane visibile mentre si scrolla il contenuto */
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-xl));
+}
+
+.legal-toc-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Lista dei capitoli nella TOC */
+.legal-toc ol {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* Ogni link nella TOC */
+.legal-toc a {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding: 5px 8px;
+    border-left: 2px solid transparent;  /* bordo accent al hover */
+    border-radius: 0 var(--radius) var(--radius) 0;
+    line-height: 1.4;
+    transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+}
+.legal-toc a:hover {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: var(--accent-lo);
+}
+
+/* Link correlati in fondo alla sidebar */
+.toc-footer-link {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border);
+}
+
+.toc-footer-link a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    transition: color var(--t-fast);
+}
+.toc-footer-link a:hover { color: var(--accent); }
+.toc-footer-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* ── Contenuto principale (destra) ── */
+.legal-content {
+    min-width: 0;  /* necessario per evitare overflow in CSS grid */
+}
+
+/* ── Singola sezione ── */
+.legal-section {
+    padding-bottom: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+    border-bottom: 1px solid var(--border);
+    /* Offset per l'ancoraggio con navbar fissa */
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+.legal-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Intestazione sezione: numero ambra + titolo */
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* Numero progressivo in monospace ambra (es. "01.") */
+.section-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+/* Titolo h2 della sezione */
+.legal-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    color: var(--text-hi);
+    line-height: 1.2;
+}
+
+/* Paragrafo corpo del documento */
+.legal-section p {
+    color: var(--text);
+    line-height: 1.85;
+    margin-bottom: var(--space-md);
+    font-size: 0.95rem;
+}
+.legal-section p:last-child { margin-bottom: 0; }
+
+/* Link nel testo */
+.legal-section a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-md);
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--t-fast);
+}
+.legal-section a:hover { text-decoration-color: var(--accent); }
+
+/* Box evidenza — per informazioni importanti */
+.legal-highlight {
+    background: var(--accent-lo);
+    border: 1px solid var(--accent-md);
+    border-left: 3px solid var(--accent);  /* bordo sinistro marcato */
+    border-radius: var(--radius);
+    padding: var(--space-md) var(--space-lg);
+    margin: var(--space-md) 0;
+}
+.legal-highlight p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+/* Codice inline (es. localStorage, nomi cookie) */
+.legal-section code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: var(--radius);
+    color: var(--accent);
+}
+
+/* ── Tabella diritti GDPR (privacy.html) ── */
+.rights-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-md) 0;
+    font-size: 0.88rem;
+}
+
+/* Intestazioni colonne */
+.rights-table th {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border-hi);
+}
+
+/* Celle dati */
+.rights-table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.55;
+}
+.rights-table tr:last-child td { border-bottom: none; }
+.rights-table tr:hover td { background: var(--surface); }
+
+/* Colonna nome diritto: evidenziata */
+.rights-table .right-name {
+    font-weight: 600;
+    color: var(--text-hi);
+    white-space: nowrap;
+}
+
+/* ── Tabella cookie (cookies.html) ── */
+/* Wrapper con scroll orizzontale su schermi piccoli */
+.cookie-table-wrapper {
+    overflow-x: auto;
+    margin: var(--space-md) 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.cookie-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    white-space: nowrap;       /* evita il testo a capo nelle celle strette */
+}
+
+.cookie-table th {
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-hi);
+}
+
+.cookie-table td {
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    white-space: normal;       /* il testo nella descrizione può andare a capo */
+}
+.cookie-table tr:last-child td { border-bottom: none; }
+.cookie-table tr:hover td { background: var(--surface); }
+
+/* Prima colonna: nome cookie evidenziato */
+.cookie-table .cookie-name {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent);
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* Badge "Strictly Necessary" accanto al tipo di cookie */
+.badge-necessary {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: var(--radius);
+    background: var(--blue-lo);
+    color: var(--blue);
+    border: 1px solid rgba(42,77,150,0.2);
+    white-space: nowrap;
+}
+
+body.dark .badge-necessary {
+    background: rgba(91,141,238, 0.12);
+    color: var(--blue);
+    border-color: rgba(91,141,238, 0.25);
+}
+
+/* ── Lista browser con istruzioni gestione cookie ── */
+.browser-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-sm);
+    margin: var(--space-md) 0;
+    list-style: none;
+}
+
+.browser-list li a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    color: var(--text);
+    transition: border-color var(--t-fast), background var(--t-fast);
+}
+.browser-list li a:hover {
+    border-color: var(--accent-md);
+    background: var(--card-hover);
+    text-decoration: none;   /* sovrascrive il default per questi link */
+}
+.browser-list li a svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+
+/* ── Responsive pagine legali ── */
+@media (max-width: 800px) {
+    .legal-body {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    /* Su mobile la TOC non è sticky, si mostra inline */
+    .legal-toc {
+        position: static;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: var(--space-lg);
+    }
+
+    /* Tabelle più compatte su mobile */
+    .rights-table { font-size: 0.82rem; }
+    .cookie-table { font-size: 0.8rem; }
+
+    .rights-table th:last-child,
+    .rights-table td:last-child { display: none; }  /* nasconde colonna extra su mobile */
+}
+
+@media (max-width: 500px) {
+    .legal-header-inner,
+    .legal-body {
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+    }
+
+    .legal-title { font-size: 1.8rem; }
+}

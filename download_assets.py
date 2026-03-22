@@ -36,7 +36,11 @@ GOOGLE_FONTS_URLS = {
 }
 
 # ── URL Lucide Icons ──────────────────────────────────────────────────────────
-LUCIDE_URL = "https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"
+# Versione fissa — allineata con quella usata negli HTML (con SRI hash).
+# Per aggiornare: cambia la versione qui e ricalcola l'hash con:
+#   curl -s "https://cdn.jsdelivr.net/npm/lucide@NUOVA_VERSIONE/dist/umd/lucide.min.js" \
+#        | openssl dgst -sha384 -binary | openssl base64 -A
+LUCIDE_URL = "https://unpkg.com/lucide@0.577.0/dist/umd/lucide.min.js"
 
 
 def fetch(url, headers=None):

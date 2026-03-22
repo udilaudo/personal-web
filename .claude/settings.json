@@ -19,7 +19,16 @@
       "Bash(conda run:*)",
       "Bash(/Users/umbertodilaudo/miniconda3/envs/personal/bin/python:*)",
       "Bash(gh repo:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:data.jsdelivr.com)",
+      "WebFetch(domain:www.jsdelivr.com)",
+      "Bash(curl -s \"https://www.jsdelivr.com/package/npm/lucide?version=0.577.0\")",
+      "Bash(curl -s \"https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js\")",
+      "Bash(openssl dgst:*)",
+      "Bash(openssl base64:*)",
+      "Read(//^    <style>/,/^    <\\\\/**)",
+      "Bash(awk 'NR>=635 && NR<=680' /Users/umbertodilaudo/Desktop/Umberto/repo/personal-web/privacy.html)",
+      "Bash(awk 'NR>=524 && NR<=570' /Users/umbertodilaudo/Desktop/Umberto/repo/personal-web/cookies.html)"
     ],
     "additionalDirectories": [
       "/Users/umbertodilaudo/Desktop/Umberto/repo/personal-web",

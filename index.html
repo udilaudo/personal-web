@@ -12,8 +12,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons caricato da jsDelivr CDN — dichiarato in Privacy Policy -->
-    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- Lucide Icons caricato da jsDelivr CDN — dichiarato in Privacy Policy.
+         Versione fissa (non @latest) per evitare aggiornamenti automatici inattesi.
+         integrity = hash SHA-384 del file: se il CDN venisse compromesso e il file
+         modificato, il browser rifiuterebbe di caricarlo (Subresource Integrity). -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"
+            integrity="sha384-orgVf2eX2+m1zKAOIi09hD0W6GtVhoOUmqDK+sysYB2JTZ4vS86j4jm+X7a4Nnei"
+            crossorigin="anonymous"></script>
 
     <!-- Foglio di stile principale — incrementa ?v= ad ogni deploy per busting della cache -->
     <link rel="stylesheet" href="style.css?v=3">

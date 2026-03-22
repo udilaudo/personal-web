@@ -14,7 +14,7 @@ A minimal, responsive personal portfolio website built with plain HTML, CSS, and
 ## Tech Stack
 
 - **HTML / CSS / JavaScript** — no frameworks
-- **[Lucide Icons](https://lucide.dev/)** — via [jsDelivr](https://www.jsdelivr.com/) CDN (`@latest`)
+- **[Lucide Icons](https://lucide.dev/)** — via [jsDelivr](https://www.jsdelivr.com/) CDN (`@0.577.0`, versione fissa con SRI hash)
 - **[Google Fonts](https://fonts.google.com/)** — Inter + Playfair Display
 - **Cloudflare Pages** — hosting, CDN & DNS
 
@@ -25,8 +25,10 @@ A minimal, responsive personal portfolio website built with plain HTML, CSS, and
 ├── index.html      # Main page
 ├── privacy.html    # Privacy Policy (GDPR)
 ├── cookies.html    # Cookie Policy (ePrivacy Directive)
-├── style.css       # All styles (light & dark theme)
-├── script.js       # Particles, typing effect, theme toggle, animations
+├── style.css       # All styles (light & dark theme, including legal pages)
+├── script.js       # Particles, typing effect, theme toggle, animations (index only)
+├── legal.js        # Shared JS for legal pages: theme toggle, navbar, mobile menu, Lucide init
+├── _headers        # Cloudflare Pages security headers (CSP, X-Frame-Options, Referrer-Policy…)
 ├── photo/          # Profile photo
 └── CV/             # PDF curriculum vitae
 ```
