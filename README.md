@@ -14,15 +14,17 @@ A minimal, responsive personal portfolio website built with plain HTML, CSS, and
 ## Tech Stack
 
 - **HTML / CSS / JavaScript** — no frameworks
-- **[Lucide Icons](https://lucide.dev/)** — via CDN (pinned version)
+- **[Lucide Icons](https://lucide.dev/)** — via [jsDelivr](https://www.jsdelivr.com/) CDN (`@latest`)
 - **[Google Fonts](https://fonts.google.com/)** — Inter + Playfair Display
-- **Cloudflare** — hosting, CDN & DNS
+- **Cloudflare Pages** — hosting, CDN & DNS
 
 ## Project Structure
 
 ```
 .
 ├── index.html      # Main page
+├── privacy.html    # Privacy Policy (GDPR)
+├── cookies.html    # Cookie Policy (ePrivacy Directive)
 ├── style.css       # All styles (light & dark theme)
 ├── script.js       # Particles, typing effect, theme toggle, animations
 ├── photo/          # Profile photo
