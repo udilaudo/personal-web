@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le pagine legali non vanno indicizzate dai motori di ricerca -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Cookie Policy — Umberto Di Laudo</title>
+
+    <!-- Google Fonts: Inter + Playfair Display — vedi Privacy Policy sezione 7 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons da jsDelivr CDN — vedi Privacy Policy sezione 7 -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- Foglio di stile principale — per coerenza con tutto il sito -->
+    <link rel="stylesheet" href="style.css?v=3">
+
+    <!-- Stili specifici di questa pagina documento -->
+    <style>
+        /* ── Wrapper generale ── */
+        .legal-page {
+            min-height: 100vh;
+        }
+
+        /* ── Header: titolo + metadati ── */
+        .legal-header {
+            padding: var(--space-3xl) 0 var(--space-2xl);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-header-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
+        }
+
+        /* Link "← Back to home" in stile monospace */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xl);
+            transition: opacity var(--t-fast);
+        }
+        .back-link:hover { opacity: 0.65; }
+        .back-link svg { width: 13px; height: 13px; }
+
+        /* Badge tipo documento */
+        .legal-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-lo);
+            border: 1px solid var(--accent-md);
+            padding: 4px 10px;
+            border-radius: var(--radius);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Titolo principale responsivo */
+        .legal-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: var(--text-hi);
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+        }
+
+        /* Riga metadati documento */
+        .legal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xl);
+            margin-top: var(--space-lg);
+        }
+
+        .legal-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .legal-meta-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .legal-meta-value {
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+
+        /* ── Layout: sidebar TOC + contenuto principale ── */
+        .legal-body {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-xl);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+        }
+
+        /* ── Sidebar: Table of Contents sticky ── */
+        .legal-toc {
+            position: sticky;
+            top: calc(var(--nav-h) + var(--space-xl));
+        }
+
+        .legal-toc-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-toc ol {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .legal-toc a {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--muted);
+            padding: 5px 8px;
+            border-left: 2px solid transparent;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            line-height: 1.4;
+            transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+        }
+        .legal-toc a:hover {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background: var(--accent-lo);
+        }
+
+        /* Link correlati nella sidebar */
+        .toc-footer-link {
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border);
+        }
+
+        .toc-footer-link a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            transition: color var(--t-fast);
+        }
+        .toc-footer-link a:hover { color: var(--accent); }
+        .toc-footer-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+        /* ── Contenuto principale ── */
+        .legal-content {
+            min-width: 0;
+        }
+
+        /* ── Singola sezione del documento ── */
+        .legal-section {
+            padding-bottom: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            border-bottom: 1px solid var(--border);
+            scroll-margin-top: calc(var(--nav-h) + 24px);
+        }
+        .legal-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Numero sezione + titolo allineati */
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Numero progressivo in ambra/oro monospace */
+        .section-num {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+        }
+
+        .legal-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--text-hi);
+            line-height: 1.2;
+        }
+
+        /* Paragrafo standard */
+        .legal-section p {
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: var(--space-md);
+            font-size: 0.95rem;
+        }
+        .legal-section p:last-child { margin-bottom: 0; }
+
+        /* Link nel testo */
+        .legal-section a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: var(--accent-md);
+            text-underline-offset: 3px;
+            transition: text-decoration-color var(--t-fast);
+        }
+        .legal-section a:hover { text-decoration-color: var(--accent); }
+
+        /* Box evidenza con bordo sinistro accent */
+        .legal-highlight {
+            background: var(--accent-lo);
+            border: 1px solid var(--accent-md);
+            border-left: 3px solid var(--accent);
+            border-radius: var(--radius);
+            padding: var(--space-md) var(--space-lg);
+            margin: var(--space-md) 0;
+        }
+        .legal-highlight p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Codice inline (es. nomi cookie, chiavi localStorage) */
+        .legal-section code {
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            border-radius: var(--radius);
+            color: var(--accent);
+        }
+
+        /* ── Tabella cookie ── */
+        /* Contiene: nome, tipo, scopo, durata, provenienza */
+        .cookie-table-wrapper {
+            overflow-x: auto;          /* scorrimento orizzontale su schermi piccoli */
+            margin: var(--space-md) 0;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            white-space: nowrap;       /* evita il testo a capo nelle celle strette */
+        }
+
+        .cookie-table th {
+            font-family: var(--font-mono);
+            font-size: 0.67rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: left;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-hi);
+        }
+
+        .cookie-table td {
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+            white-space: normal;       /* il testo nella descrizione può andare a capo */
+        }
+        .cookie-table tr:last-child td { border-bottom: none; }
+        .cookie-table tr:hover td { background: var(--surface); }
+
+        /* Prima colonna: nome cookie evidenziato */
+        .cookie-table .cookie-name {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--accent);
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        /* Badge "Strictly Necessary" accanto al tipo */
+        .badge-necessary {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 2px 7px;
+            border-radius: var(--radius);
+            background: var(--blue-lo);
+            color: var(--blue);
+            border: 1px solid rgba(42,77,150,0.2);
+            white-space: nowrap;
+        }
+
+        body.dark .badge-necessary {
+            background: rgba(91,141,238, 0.12);
+            color: var(--blue);
+            border-color: rgba(91,141,238, 0.25);
+        }
+
+        /* ── Lista browser con istruzioni gestione cookie ── */
+        .browser-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-sm);
+            margin: var(--space-md) 0;
+            list-style: none;
+        }
+
+        .browser-list li a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            color: var(--text);
+            transition: border-color var(--t-fast), background var(--t-fast);
+        }
+        .browser-list li a:hover {
+            border-color: var(--accent-md);
+            background: var(--card-hover);
+            text-decoration: none;   /* sovrascrive il default per questi link */
+        }
+        .browser-list li a svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+
+        /* ── Responsive ── */
+        @media (max-width: 800px) {
+            .legal-body {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            .legal-toc {
+                position: static;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: var(--space-lg);
+            }
+            .cookie-table { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 500px) {
+            .legal-header-inner,
+            .legal-body {
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
+            }
+            .legal-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         NAVBAR — identica al sito principale
+         ============================================================ -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">UDL</a>
+
+            <ul class="nav-links">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i data-lucide="moon" class="icon-moon"></i>
+                <i data-lucide="sun"  class="icon-sun"></i>
+            </button>
+
+            <button id="menu-toggle" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div id="mobile-menu">
+            <a href="index.html#about">About</a>
+            <a href="index.html#education">Education</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#publications">Publications</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+
+    <!-- ============================================================
+         HEADER: titolo, badge, metadati documento
+         ============================================================ -->
+    <div class="legal-page">
+        <header class="legal-header">
+            <div class="legal-header-inner">
+
+                <a href="index.html" class="back-link">
+                    <i data-lucide="arrow-left"></i>
+                    Back to home
+                </a>
+
+                <div class="legal-badge">Legal Document</div>
+
+                <h1 class="legal-title">Cookie Policy</h1>
+
+                <div class="legal-meta">
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Last Updated</span>
+                        <span class="legal-meta-value">March 2026</span>
+                    </div>
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Jurisdiction</span>
+                        <span class="legal-meta-value">GDPR · ePrivacy Directive</span>
+                    </div>
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Owner Cookies Set</span>
+                        <!-- Zero cookie impostati dal proprietario del sito -->
+                        <span class="legal-meta-value">Zero (0)</span>
+                    </div>
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Consent Required</span>
+                        <span class="legal-meta-value">No</span>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+
+        <!-- ============================================================
+             BODY: SIDEBAR TOC + CONTENUTO
+             ============================================================ -->
+        <div class="legal-body">
+
+            <!-- ── SIDEBAR TOC ── -->
+            <aside class="legal-toc" aria-label="Table of contents">
+                <p class="legal-toc-label">Contents</p>
+                <ol>
+                    <li><a href="#s1">What Are Cookies</a></li>
+                    <li><a href="#s2">Cookies We Set</a></li>
+                    <li><a href="#s3">Cloudflare Cookies</a></li>
+                    <li><a href="#s4">localStorage</a></li>
+                    <li><a href="#s5">No Consent Banner</a></li>
+                    <li><a href="#s6">Managing Cookies</a></li>
+                    <li><a href="#s7">Policy Updates</a></li>
+                    <li><a href="#s8">Contact</a></li>
+                </ol>
+
+                <!-- Link alla Privacy Policy correlata -->
+                <div class="toc-footer-link">
+                    <a href="privacy.html">
+                        <i data-lucide="external-link"></i>
+                        Privacy Policy
+                    </a>
+                </div>
+            </aside>
+
+
+            <!-- ── CONTENUTO PRINCIPALE ── -->
+            <main class="legal-content">
+
+                <!-- INTRODUZIONE -->
+                <section class="legal-section" id="intro">
+                    <p>
+                        This Cookie Policy explains what cookies are, which cookies (if any)
+                        are used on this website, and how you can manage your preferences.
+                        It should be read together with the
+                        <a href="privacy.html">Privacy Policy</a>, which also covers
+                        data processed by Google Fonts and Cloudflare.
+                    </p>
+                    <p>
+                        This website is a static personal portfolio with <strong>no analytics,
+                        no advertising, and no tracking.</strong> The cookie footprint is
+                        minimal and limited to strictly necessary infrastructure functionality.
+                        Note that Google Fonts and jsDelivr CDN (used for typography and icons)
+                        do <em>not</em> set cookies, but do receive connection data —
+                        covered in <a href="privacy.html#s7">Privacy Policy § 7</a>.
+                    </p>
+                </section>
+
+                <!-- 1. COSA SONO I COOKIE -->
+                <section class="legal-section" id="s1">
+                    <div class="section-heading">
+                        <span class="section-num">01.</span>
+                        <h2>What Are Cookies?</h2>
+                    </div>
+                    <p>
+                        Cookies are small text files that a website places on your device
+                        (computer, tablet, smartphone) when you visit it. They are stored
+                        in your browser and sent back to the originating website on
+                        subsequent visits.
+                    </p>
+                    <p>
+                        Cookies are typically used to:
+                    </p>
+                    <p>
+                        <strong>Keep sessions active</strong> (e.g. remember you are logged in) ·
+                        <strong>Store preferences</strong> (e.g. language, theme) ·
+                        <strong>Analyse usage</strong> (e.g. page views, click paths) ·
+                        <strong>Deliver personalised advertising</strong>
+                    </p>
+                    <p>
+                        This website uses cookies only for the first category (infrastructure
+                        security), and <strong>no cookies for analytics, advertising,
+                        or cross-site tracking.</strong>
+                    </p>
+                </section>
+
+                <!-- 2. COOKIE IMPOSTATI DAL PROPRIETARIO -->
+                <section class="legal-section" id="s2">
+                    <div class="section-heading">
+                        <span class="section-num">02.</span>
+                        <h2>Cookies Set by This Website</h2>
+                    </div>
+
+                    <div class="legal-highlight">
+                        <p>
+                            <strong>The owner of this website (Umberto Di Laudo) sets
+                            zero (0) cookies.</strong> No first-party cookies of any
+                            category are placed on your device by this site's code.
+                        </p>
+                    </div>
+
+                    <p>
+                        Specifically, the following cookie categories are <strong>not used</strong>:
+                    </p>
+                    <p>
+                        ✗ &nbsp;Analytics / statistics cookies (e.g. Google Analytics, Matomo)<br>
+                        ✗ &nbsp;Advertising / targeting cookies<br>
+                        ✗ &nbsp;Social media tracking pixels<br>
+                        ✗ &nbsp;Session or login cookies (no user accounts exist)<br>
+                        ✗ &nbsp;Personalisation cookies
+                    </p>
+                    <p>
+                        Because no consent-requiring cookies are set, <strong>no cookie
+                        consent banner is displayed</strong> — this is legally correct under
+                        the ePrivacy Directive and GDPR.
+                    </p>
+                </section>
+
+                <!-- 3. COOKIE DI CLOUDFLARE (TERZA PARTE) -->
+                <section class="legal-section" id="s3">
+                    <div class="section-heading">
+                        <span class="section-num">03.</span>
+                        <h2>Cloudflare Infrastructure Cookies</h2>
+                    </div>
+                    <p>
+                        This website is hosted on <strong>Cloudflare Pages</strong> and
+                        delivered via Cloudflare's global CDN. Cloudflare may automatically
+                        set strictly necessary cookies as part of its network security,
+                        bot management, and load-balancing operations. These are
+                        <strong>third-party cookies</strong> set by Cloudflare's
+                        infrastructure, not by the site owner.
+                    </p>
+
+                    <!-- Tabella cookie Cloudflare -->
+                    <div class="cookie-table-wrapper">
+                        <table class="cookie-table" aria-label="Cloudflare infrastructure cookies">
+                            <thead>
+                                <tr>
+                                    <th>Cookie Name</th>
+                                    <th>Type</th>
+                                    <th>Purpose</th>
+                                    <th>Duration</th>
+                                    <th>Set By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- __cf_bm: bot management, 30 minuti -->
+                                <tr>
+                                    <td class="cookie-name">__cf_bm</td>
+                                    <td><span class="badge-necessary">Strictly Necessary</span></td>
+                                    <td>
+                                        Bot management and protection. Distinguishes
+                                        between legitimate user traffic and automated
+                                        bots to protect the site from abuse.
+                                    </td>
+                                    <td>30 minutes (session)</td>
+                                    <td>Cloudflare, Inc.</td>
+                                </tr>
+                                <!-- __cflb: load balancing, session -->
+                                <tr>
+                                    <td class="cookie-name">__cflb</td>
+                                    <td><span class="badge-necessary">Strictly Necessary</span></td>
+                                    <td>
+                                        Load balancing. Ensures that requests from
+                                        a given session are consistently routed to
+                                        the same Cloudflare edge server.
+                                    </td>
+                                    <td>Session (deleted when browser closes)</td>
+                                    <td>Cloudflare, Inc.</td>
+                                </tr>
+                                <!-- cf_clearance: challenge passed -->
+                                <tr>
+                                    <td class="cookie-name">cf_clearance</td>
+                                    <td><span class="badge-necessary">Strictly Necessary</span></td>
+                                    <td>
+                                        Set after a visitor has successfully passed
+                                        a Cloudflare security challenge (e.g. CAPTCHA).
+                                        Prevents the challenge from being shown again.
+                                    </td>
+                                    <td>Up to 30 minutes</td>
+                                    <td>Cloudflare, Inc.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>
+                        <strong>Note:</strong> Not all of these cookies will necessarily
+                        be set on every visit. Cloudflare only sets security cookies when
+                        its automated systems determine they are required (e.g. suspicious
+                        traffic patterns). On a normal visit from a residential connection,
+                        you may see none of these cookies.
+                    </p>
+                    <p>
+                        These cookies are classified as <strong>strictly necessary</strong>
+                        under the ePrivacy Directive because they are required for the
+                        secure technical operation of the CDN infrastructure. No consent
+                        is required to set them. For Cloudflare's full cookie documentation
+                        see:
+                        <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/"
+                           target="_blank" rel="noopener noreferrer">
+                            Cloudflare cookie documentation
+                        </a>.
+                    </p>
+                </section>
+
+                <!-- 4. LOCALSTORAGE (NON UN COOKIE) -->
+                <section class="legal-section" id="s4">
+                    <div class="section-heading">
+                        <span class="section-num">04.</span>
+                        <h2>localStorage (Theme Preference)</h2>
+                    </div>
+                    <p>
+                        This site uses the browser's <code>localStorage</code> API —
+                        <strong>not a cookie</strong> — to remember your light/dark
+                        mode preference. <code>localStorage</code> data is stored
+                        locally in your browser and is never transmitted to any server.
+                    </p>
+
+                    <div class="legal-highlight">
+                        <p>
+                            <strong>Key:</strong> <code>theme</code> &nbsp;·&nbsp;
+                            <strong>Values:</strong> <code>"light"</code> or
+                            <code>"dark"</code> &nbsp;·&nbsp;
+                            <strong>Scope:</strong> your device only, never sent
+                            to a server &nbsp;·&nbsp;
+                            <strong>Consent required:</strong> No
+                        </p>
+                    </div>
+
+                    <p>
+                        <code>localStorage</code> entries do not expire automatically.
+                        To delete this preference: open your browser's developer tools
+                        → Application (or Storage) tab → Local Storage →
+                        select this site → delete the <code>theme</code> key.
+                        Alternatively, clear your browser's site data for this domain.
+                    </p>
+                </section>
+
+                <!-- 5. PERCHÉ NON C'È UN COOKIE BANNER -->
+                <section class="legal-section" id="s5">
+                    <div class="section-heading">
+                        <span class="section-num">05.</span>
+                        <h2>Why There Is No Cookie Banner</h2>
+                    </div>
+                    <p>
+                        Under the ePrivacy Directive (2002/58/EC, as amended) and GDPR,
+                        a cookie consent banner is required only when a website sets
+                        <strong>non-essential cookies</strong> — i.e. cookies that are
+                        not strictly necessary for the technical operation of the service
+                        requested by the user.
+                    </p>
+
+                    <div class="legal-highlight">
+                        <p>
+                            <strong>This website sets no non-essential cookies.</strong>
+                            The only cookies that may be present are strictly necessary
+                            infrastructure cookies set by Cloudflare (Section 3 above).
+                            No consent banner is legally required or displayed.
+                        </p>
+                    </div>
+
+                    <p>
+                        This position is consistent with guidance from the Italian DPA
+                        (<em>Garante per la protezione dei dati personali</em>), the
+                        EDPB (European Data Protection Board), and the Article 29
+                        Working Party Opinion 04/2012 on cookie consent exemptions.
+                    </p>
+                </section>
+
+                <!-- 6. GESTIONE DEI COOKIE -->
+                <section class="legal-section" id="s6">
+                    <div class="section-heading">
+                        <span class="section-num">06.</span>
+                        <h2>Managing and Deleting Cookies</h2>
+                    </div>
+                    <p>
+                        You can control, disable, or delete cookies through your
+                        browser settings at any time. Note that blocking strictly
+                        necessary cookies may affect the technical delivery of pages.
+                        Since this site sets no non-essential cookies, disabling
+                        cookies will not prevent you from accessing any content.
+                    </p>
+                    <p>
+                        Instructions for managing cookies in popular browsers:
+                    </p>
+
+                    <!-- Lista browser con link alle guide ufficiali -->
+                    <ul class="browser-list">
+                        <li>
+                            <a href="https://support.google.com/chrome/answer/95647"
+                               target="_blank" rel="noopener noreferrer">
+                                <i data-lucide="globe"></i>
+                                Google Chrome
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer"
+                               target="_blank" rel="noopener noreferrer">
+                                <i data-lucide="globe"></i>
+                                Mozilla Firefox
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac"
+                               target="_blank" rel="noopener noreferrer">
+                                <i data-lucide="globe"></i>
+                                Apple Safari
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
+                               target="_blank" rel="noopener noreferrer">
+                                <i data-lucide="globe"></i>
+                                Microsoft Edge
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://help.opera.com/en/latest/web-preferences/#cookies"
+                               target="_blank" rel="noopener noreferrer">
+                                <i data-lucide="globe"></i>
+                                Opera
+                            </a>
+                        </li>
+                    </ul>
+
+                    <p>
+                        You can also opt out of Cloudflare's bot protection cookies
+                        by contacting Cloudflare's privacy team at
+                        <a href="https://www.cloudflare.com/privacypolicy/"
+                           target="_blank" rel="noopener noreferrer">
+                            cloudflare.com/privacypolicy
+                        </a>.
+                        However, blocking Cloudflare's infrastructure cookies may result
+                        in degraded performance or security challenges when accessing
+                        Cloudflare-hosted sites.
+                    </p>
+                </section>
+
+                <!-- 7. AGGIORNAMENTI ALLA POLICY -->
+                <section class="legal-section" id="s7">
+                    <div class="section-heading">
+                        <span class="section-num">07.</span>
+                        <h2>Policy Updates</h2>
+                    </div>
+                    <p>
+                        This Cookie Policy may be updated to reflect changes in
+                        infrastructure, applicable legislation, or best practices.
+                        The "Last Updated" date at the top of this page indicates
+                        the most recent revision.
+                    </p>
+                    <p>
+                        If new non-essential cookies were ever introduced (for example,
+                        if analytics were added in the future), this policy and the
+                        Privacy Policy would be updated before implementation, and a
+                        cookie consent mechanism would be added as required by law.
+                    </p>
+                </section>
+
+                <!-- 8. CONTATTI -->
+                <section class="legal-section" id="s8">
+                    <div class="section-heading">
+                        <span class="section-num">08.</span>
+                        <h2>Contact</h2>
+                    </div>
+                    <p>
+                        For any questions about this Cookie Policy or cookie practices
+                        on this site, please contact:
+                    </p>
+                    <p>
+                        <strong>Umberto Di Laudo</strong><br>
+                        <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
+                    </p>
+                    <p>
+                        You may also lodge a complaint with the Italian Data Protection
+                        Authority (Garante per la protezione dei dati personali) at
+                        <a href="https://www.garanteprivacy.it"
+                           target="_blank" rel="noopener noreferrer">
+                            garanteprivacy.it
+                        </a>.
+                    </p>
+                </section>
+
+            </main>
+        </div><!-- fine .legal-body -->
+    </div><!-- fine .legal-page -->
+
+
+    <!-- ============================================================
+         FOOTER — identico al sito principale
+         ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>
+                    &copy; 2026 Umberto Di Laudo
+                    &nbsp;·&nbsp;
+                    <a href="privacy.html">Privacy Policy</a>
+                    &nbsp;·&nbsp;
+                    <a href="cookies.html">Cookie Policy</a>
+                </p>
+                <div class="footer-links">
+                    <a href="https://github.com/udilaudo/"
+                       target="_blank" rel="noopener" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/umbertodilaudo/"
+                       target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ"
+                       target="_blank" rel="noopener" aria-label="Google Scholar">
+                        <i data-lucide="book-open"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================
+         SCRIPT — Lucide icons, tema, navbar, menu mobile
+         ============================================================ -->
+    <script>
+        // Inizializza le icone SVG di Lucide nella pagina
+        lucide.createIcons();
+
+        // ── TEMA: ripristina la preferenza salvata ──
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark');
+        }
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // ── NAVBAR: aggiunge ombra dopo 50px di scroll ──
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ── MENU MOBILE ──
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

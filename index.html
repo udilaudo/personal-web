@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umberto Di Laudo</title>
+    <title>Umberto Di Laudo — Data Scientist & Physicist</title>
 
-    <!-- Google Fonts: serviti LOCALMENTE dalla cartella fonts/
-         (nessun dato inviato a Google — conforme GDPR) -->
-    <link rel="stylesheet" href="fonts/fonts.css">
+    <!-- Google Fonts: Inter (corpo) + Playfair Display (titoli)
+         NB: il browser invia IP e user-agent a Google al caricamento.
+         Dichiarato nella Privacy Policy (sezione "Fonts"). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <!-- Icons: Lucide Icons servito LOCALMENTE dalla cartella vendors/
-         (nessun dato inviato a unpkg — conforme GDPR) -->
-    <script src="vendors/lucide.min.js"></script>
+    <!-- Lucide Icons caricato da jsDelivr CDN — dichiarato in Privacy Policy -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <!-- Our stylesheet (il ?v= serve per forzare il browser e Cloudflare
-         a scaricare la versione aggiornata del CSS — va incrementato ad ogni deploy) -->
-    <link rel="stylesheet" href="style.css?v=2">
+    <!-- Foglio di stile principale — incrementa ?v= ad ogni deploy per busting della cache -->
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
     <!-- ============================================================
-         NAVBAR — Fixed navigation bar at the top
+         NAVBAR — Barra di navigazione fissa in cima alla pagina.
+         Il JS in script.js aggiunge la classe "scrolled" dopo 50px di scroll.
          ============================================================ -->
     <nav id="navbar">
         <div class="nav-container">
-            <!-- Logo / Initials -->
+
+            <!-- Logo: iniziali in serif, colore accent -->
             <a href="#hero" class="nav-logo">UDL</a>
 
-            <!-- Desktop navigation links -->
+            <!-- Link di navigazione desktop -->
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
@@ -37,13 +40,15 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
 
-            <!-- Light/dark theme toggle button -->
+            <!-- Bottone toggle tema — il JS alterna la classe "dark" su <body> -->
             <button id="theme-toggle" aria-label="Toggle theme">
+                <!-- Icona luna: visibile in modalità chiara -->
                 <i data-lucide="moon" class="icon-moon"></i>
-                <i data-lucide="sun" class="icon-sun"></i>
+                <!-- Icona sole: visibile in modalità scura -->
+                <i data-lucide="sun"  class="icon-sun"></i>
             </button>
 
-            <!-- Hamburger menu for mobile -->
+            <!-- Hamburger button per mobile — il JS aggiunge "active" per animare le linee in X -->
             <button id="menu-toggle" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -51,7 +56,7 @@
             </button>
         </div>
 
-        <!-- Mobile menu (opens when hamburger is clicked) -->
+        <!-- Menu mobile a tendina — il JS aggiunge "active" per farlo apparire -->
         <div id="mobile-menu">
             <a href="#about">About</a>
             <a href="#education">Education</a>
@@ -62,106 +67,112 @@
         </div>
     </nav>
 
+
     <!-- ============================================================
-         HERO SECTION — The first thing you see when opening the site
+         HERO SECTION — Prima cosa visibile all'apertura del sito.
+         Contiene: canvas particelle, nome, ruolo (typing), bio, CTA, social, citazione.
          ============================================================ -->
     <section id="hero">
-        <!-- Animated particle background (managed by JS) -->
+
+        <!-- Canvas per le particelle animate (gestito interamente da script.js) -->
         <canvas id="particles-canvas"></canvas>
 
+        <!-- Gradiente di dissolvenza in fondo alla hero, per una transizione fluida -->
+        <div class="hero-vignette" aria-hidden="true"></div>
+
+        <!-- Contenuto principale della hero (il JS applica parallasse su questo div) -->
         <div class="hero-content">
-            <!-- Greeting with typing effect -->
-            <p class="hero-greeting">Hi, my name is</p>
 
-            <!-- Large name with gradient -->
-            <h1 class="hero-name">
-                <span class="gradient-text">Umberto Di Laudo</span>
-            </h1>
+            <!-- Saluto in stile monospace — piccolo, sopra il nome -->
+            <p class="hero-greeting">Hello, my name is</p>
 
-            <!-- Subtitle with rotating "role" -->
-            <p class="hero-title">
-                <span id="typed-text"></span><span class="cursor">|</span>
-            </p>
+            <!-- Nome grande in Playfair Display -->
+            <h1 class="hero-name">Umberto<br>Di Laudo</h1>
 
-            <!-- Short description -->
-            <p class="hero-description">
-                I'm a Data Scientist and Physicist with a passion for applying machine learning to real-world problems. I hold a PhD in Data Science & Artificial Intelligence from the University of Trieste.
-            </p>
-
-            <!-- Call-to-action buttons -->
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">
-                    <i data-lucide="mail"></i>
-                    Get in Touch
-                </a>
-                <a href="#education" class="btn btn-secondary">
-                    <i data-lucide="graduation-cap"></i>
-                    My Background
-                </a>
-                <!-- Opens the CV PDF in a new tab (view, not download) -->
-                <a href="CV/CV_Umberto_Di_Laudo.pdf" target="_blank" class="btn btn-secondary">
-                    <i data-lucide="file-text"></i>
-                    View CV
-                </a>
+            <!-- Riga del ruolo: trattino decorativo + testo che "si digita da solo" (script.js) -->
+            <div class="hero-role-line">
+                <span class="hero-dash">—</span>
+                <!-- Il JS scrive e cancella il testo in questo elemento -->
+                <span id="typed-text"></span>
+                <!-- Cursore lampeggiante animato in CSS -->
+                <span class="cursor">|</span>
             </div>
 
-            <!-- Social links -->
+            <!-- Bio breve -->
+            <p class="hero-description">
+                PhD in Data Science &amp; AI. I bridge theoretical physics and machine learning —
+                building systems that learn from complex data, from seabed topography to neural architectures.
+            </p>
+
+            <!-- Pulsanti di azione -->
+            <div class="hero-buttons">
+                <a href="#contact"                              class="btn btn-primary">Get in Touch</a>
+                <a href="#education"                            class="btn btn-secondary">My Background</a>
+                <a href="CV/CV_Umberto_Di_Laudo.pdf" target="_blank" class="btn btn-secondary">View CV</a>
+            </div>
+
+            <!-- Icone social con link esterni -->
             <div class="hero-socials">
-                <a href="https://github.com/udilaudo/" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/udilaudo/"                              target="_blank" rel="noopener" aria-label="GitHub">
                     <i data-lucide="github"></i>
                 </a>
-                <a href="https://linkedin.com/in/umbertodilaudo/" target="_blank" aria-label="LinkedIn">
+                <a href="https://linkedin.com/in/umbertodilaudo/"                   target="_blank" rel="noopener" aria-label="LinkedIn">
                     <i data-lucide="linkedin"></i>
                 </a>
-                <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank" aria-label="Google Scholar">
+                <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar">
                     <i data-lucide="book-open"></i>
                 </a>
                 <a href="mailto:umbertodilaudo@gmail.com" aria-label="Email">
                     <i data-lucide="mail"></i>
                 </a>
             </div>
+
+            <!-- Citazione di Rino Gaetano: in corsivo serif, bordo sinistro come accent -->
+            <blockquote class="hero-quote">
+                <p>&ldquo;E sono ormai convinto da molte lune dell&rsquo;inutilità irreversibile del tempo&rdquo;</p>
+                <cite>Tu, forse non essenzialmente tu &nbsp;—&nbsp; Rino Gaetano</cite>
+            </blockquote>
         </div>
 
-        <!-- Animated "scroll down" arrow -->
-        <a href="#about" class="scroll-indicator">
-            <i data-lucide="chevron-down"></i>
+        <!-- Freccia animata "scroll down" -->
+        <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+            <i data-lucide="arrow-down"></i>
         </a>
     </section>
 
+
     <!-- ============================================================
-         ABOUT — "About Me" section
+         ABOUT — Chi sono
          ============================================================ -->
     <section id="about" class="section">
+        <!-- Numero decorativo di sfondo (solo estetico) -->
+        <div class="section-marker" aria-hidden="true">01</div>
+
         <div class="container">
-            <!-- Section title -->
-            <h2 class="section-title" data-aos>
-                <span class="section-number">01.</span> About Me
-            </h2>
+            <!-- Titolo sezione — l'attributo data-aos attiva l'animazione di entrata scroll -->
+            <h2 class="section-title" data-aos>About Me</h2>
 
+            <!-- Griglia: testo a sinistra, foto a destra -->
             <div class="about-grid">
-                <!-- Profile photo with decorative border -->
-                <div class="about-image" data-aos>
-                    <div class="image-wrapper">
-                        <!-- Replace "me3.jpeg" with your actual photo filename -->
-                        <img src="photo/me.jpeg" alt="Umberto Di Laudo">
-                    </div>
-                </div>
 
-                <!-- Bio text -->
+                <!-- Colonna testo -->
                 <div class="about-text" data-aos>
                     <p>
-                        I am a researcher and data scientist with a solid background in
-                        <strong>Physics</strong> and a PhD in <strong>Data Science & Artificial Intelligence</strong>.
+                        I'm a Data Scientist and Theoretical Physicist based in Trieste, Italy.
+                        My work sits at the intersection of physics, mathematics, and machine learning.
                     </p>
                     <p>
-                        I work on machine learning and mathematical modeling, combining theoretical thinking with practical
-                        Python implementation to solve complex, data-driven problems. My work includes GIS-based marine seabed
-                        analysis using ML/DL for image classification and semantic segmentation, as well as experience
-                        with Physics-Informed Neural Networks (PINNs) for differential equation modeling.
+                        I recently completed my PhD at the University of Trieste, where I developed
+                        machine learning models for automated seabed morphology recognition. My research
+                        spans deep learning, computer vision, Physics-Informed Neural Networks (PINNs),
+                        Graph Neural Networks (GNNs), and GIS-based spatial analysis.
+                    </p>
+                    <p>
+                        Before that, I studied theoretical physics in Bologna, specializing in quantum
+                        phase transitions and deconfined quantum criticality.
                     </p>
 
-
-                    <!-- Quick info cards -->
+                    <!-- Griglia di info rapide (posizione, ruolo, lingue, interessi) -->
                     <div class="info-cards">
                         <div class="info-card">
                             <i data-lucide="map-pin"></i>
@@ -188,124 +199,102 @@
                             <i data-lucide="heart"></i>
                             <div>
                                 <span class="info-label">Interests</span>
-                                <span class="info-value">AI, Physics, Football, Chess, Guitar</span>
+                                <span class="info-value">AI · Physics · Football · Chess · Guitar</span>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Colonna foto con bordo decorativo offset -->
+                <div class="about-image" data-aos>
+                    <div class="image-wrapper">
+                        <img src="photo/me.jpeg" alt="Umberto Di Laudo">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+
     <!-- ============================================================
-         EDUCATION — Vertical timeline of academic background
+         EDUCATION — Timeline verticale del percorso accademico
          ============================================================ -->
     <section id="education" class="section section-alt">
+        <div class="section-marker" aria-hidden="true">02</div>
         <div class="container">
-            <h2 class="section-title" data-aos>
-                <span class="section-number">02.</span> Education
-            </h2>
+            <h2 class="section-title" data-aos>Education</h2>
 
-            <!-- Vertical timeline -->
+            <!-- Timeline: linea verticale + voci con anno e contenuto -->
             <div class="timeline">
 
-                <!-- PhD -->
+                <!-- PhD (il più recente completato) -->
                 <div class="timeline-item" data-aos>
-                    <div class="timeline-dot">
-                        <i data-lucide="award"></i>
-                    </div>
+                    <div class="timeline-year">2022 – 2026</div>
+                    <!-- Dot colorato sulla linea verticale -->
+                    <div class="timeline-dot timeline-dot-accent"></div>
                     <div class="timeline-content">
-                        <div class="timeline-badge">2022 — 2025</div>
-                        <h3>PhD</h3>
-                        <h4>Data Science and Artificial Intelligence</h4>
-                        <p class="timeline-institution">
-                            <i data-lucide="building-2"></i>
-                            University of Trieste, Italy
-                        </p>
-                        <p>
+                        <span class="timeline-tag timeline-tag-phd">PhD</span>
+                        <h3 class="timeline-degree">Data Science &amp; AI</h3>
+                        <p class="timeline-institution">University of Trieste</p>
+                        <p class="timeline-thesis">
                             Thesis: <em>"Machine Learning for Automated Recognition of Seabed Morphologies"</em>
                         </p>
-                        <p>
-                            Research focus: developed novel machine learning algorithms for the classification of seabed morphologies
-                            using multibeam echosounder data, achieving state-of-the-art performance and providing new insights
-                            into underwater geological processes.
-                        </p>
-                        <a href="https://hdl.handle.net/20.500.14242/354586" class="thesis-link">
-                            <i data-lucide="file-text"></i>
-                            Read the PhD thesis
+                        <a href="https://hdl.handle.net/20.500.14242/354586" target="_blank" rel="noopener" class="thesis-link">
+                            <i data-lucide="external-link"></i> Read Thesis
                         </a>
                     </div>
                 </div>
 
-                <!-- Visiting Research Period — Santiago del Chile -->
+                <!-- Periodo di ricerca a Santiago del Chile -->
                 <div class="timeline-item" data-aos>
-                    <div class="timeline-dot">
-                        <i data-lucide="plane"></i>
-                    </div>
+                    <div class="timeline-year">Sep – Dec 2025</div>
+                    <div class="timeline-dot timeline-dot-special"></div>
                     <div class="timeline-content">
-                        <div class="timeline-badge">Sep — Dec 2025</div>
-                        <h3>Visiting Researcher</h3>
-                        <h4>GNN Expressiveness beyond the WL Theorem</h4>
-                        <p class="timeline-institution">
-                            <i data-lucide="building-2"></i>
-                            Santiago del Chile — ACANCOS Project
-                        </p>
-                        <p>
-                            Three-month research stay focused on the expressiveness of Graph Neural Networks (GNNs)
-                            beyond the Weisfeiler-Leman (WL) theorem, combining both theoretical analysis on graph
-                            structures and applied experimentation.
+                        <span class="timeline-tag timeline-tag-visit">Research Visit</span>
+                        <h3 class="timeline-degree">GNN Expressiveness</h3>
+                        <p class="timeline-institution">Universidad de Santiago de Chile · ACANCOS Project</p>
+                        <p class="timeline-thesis">
+                            Visiting researcher studying GNN expressiveness beyond the Weisfeiler-Leman theorem,
+                            combining theoretical analysis and applied experimentation.
                         </p>
                     </div>
                 </div>
 
-                <!-- Master's Degree -->
+                <!-- Laurea Magistrale -->
                 <div class="timeline-item" data-aos>
-                    <div class="timeline-dot">
-                        <i data-lucide="graduation-cap"></i>
-                    </div>
+                    <div class="timeline-year">2019 – 2022</div>
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-badge">2019 — 2022</div>
-                        <h3>Master's Degree</h3>
-                        <h4>Theoretical Physics</h4>
-                        <p class="timeline-institution">
-                            <i data-lucide="building-2"></i>
-                            Alma Mater Studiorum - University of Bologna, Italy
-                        </p>
-                        <p>
+                        <span class="timeline-tag">Master's</span>
+                        <h3 class="timeline-degree">Theoretical Physics</h3>
+                        <p class="timeline-institution">Alma Mater Studiorum · University of Bologna</p>
+                        <p class="timeline-thesis">
                             Thesis: <em>"Deconfined Quantum Criticality"</em>
+                            <span class="grade-badge">110/110</span>
                         </p>
-                        <p>
-                            Grade: <strong>110/110</strong>
-                        </p>
-                        <a href="https://amslaurea.unibo.it/id/eprint/25125/1/Deconfined%20quantum%20criticality.pdf" class="thesis-link">
-                            <i data-lucide="file-text"></i>
-                            Read the Master's thesis
+                        <a href="https://amslaurea.unibo.it/id/eprint/25125/1/Deconfined%20quantum%20criticality.pdf"
+                           target="_blank" rel="noopener" class="thesis-link">
+                            <i data-lucide="external-link"></i> Read Thesis
                         </a>
                     </div>
                 </div>
 
-                <!-- Bachelor's Degree -->
+                <!-- Laurea Triennale -->
                 <div class="timeline-item" data-aos>
-                    <div class="timeline-dot">
-                        <i data-lucide="book-open"></i>
-                    </div>
+                    <div class="timeline-year">2016 – 2019</div>
+                    <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-badge">2016 — 2019</div>
-                        <h3>Bachelor's Degree</h3>
-                        <h4>Physics</h4>
-                        <p class="timeline-institution">
-                            <i data-lucide="building-2"></i>
-                            Alma Mater Studiorum - University of Bologna, Italy
-                        </p>
-                        <p>
+                        <span class="timeline-tag">Bachelor's</span>
+                        <h3 class="timeline-degree">Physics</h3>
+                        <p class="timeline-institution">Alma Mater Studiorum · University of Bologna</p>
+                        <p class="timeline-thesis">
                             Thesis: <em>"Statistica Frazionaria e Anioni"</em>
+                            <span class="grade-badge">110/110</span>
                         </p>
-                        <p>
-                            Grade: <strong>110/110</strong>
-                        </p>
-                        <a href="https://amslaurea.unibo.it/id/eprint/18721/1/Statistica%20frazionaria%20e%20anioni%20-%20Umberto%20Di%20Laudo.pdf" class="thesis-link">
-                            <i data-lucide="file-text"></i>
-                            Read the Bachelor's thesis
+                        <a href="https://amslaurea.unibo.it/id/eprint/18721/1/Statistica%20frazionaria%20e%20anioni%20-%20Umberto%20Di%20Laudo.pdf"
+                           target="_blank" rel="noopener" class="thesis-link">
+                            <i data-lucide="external-link"></i> Read Thesis
                         </a>
                     </div>
                 </div>
@@ -314,19 +303,18 @@
         </div>
     </section>
 
+
     <!-- ============================================================
-         SKILLS — Technical skills displayed as clean tags (no bars)
+         SKILLS — Competenze tecniche in formato tag monospace
          ============================================================ -->
     <section id="skills" class="section">
+        <div class="section-marker" aria-hidden="true">03</div>
         <div class="container">
-            <h2 class="section-title" data-aos>
-                <span class="section-number">03.</span> Skills
-            </h2>
+            <h2 class="section-title" data-aos>Skills</h2>
 
-            <!-- Layout verticale: ogni categoria è un blocco centrato -->
+            <!-- Griglia a 3 colonne: Languages / ML & AI / Tools -->
             <div class="skills-flow">
 
-                <!-- Categoria: Linguaggi di programmazione -->
                 <div class="skill-block" data-aos>
                     <div class="skill-block-label">
                         <i data-lucide="code-2"></i>
@@ -340,11 +328,10 @@
                     </div>
                 </div>
 
-                <!-- Categoria: Machine Learning & AI -->
                 <div class="skill-block" data-aos>
                     <div class="skill-block-label">
                         <i data-lucide="brain"></i>
-                        <span>ML & AI</span>
+                        <span>ML &amp; AI</span>
                     </div>
                     <div class="skill-tags">
                         <span class="skill-tag">PyTorch</span>
@@ -356,7 +343,6 @@
                     </div>
                 </div>
 
-                <!-- Categoria: Strumenti -->
                 <div class="skill-block" data-aos>
                     <div class="skill-block-label">
                         <i data-lucide="wrench"></i>
@@ -375,114 +361,170 @@
         </div>
     </section>
 
+
     <!-- ============================================================
-         PUBLICATIONS — Publications & Conferences
+         PUBLICATIONS & CONFERENCES — Pubblicazioni e conferenze
          ============================================================ -->
     <section id="publications" class="section section-alt">
+        <div class="section-marker" aria-hidden="true">04</div>
         <div class="container">
-            <h2 class="section-title" data-aos>
-                <span class="section-number">04.</span> Publications & Conferences
-            </h2>
+            <h2 class="section-title" data-aos>Publications &amp; Conferences</h2>
 
-            <!-- Griglia con paper e talk -->
+            <!-- Griglia 2 colonne per le card -->
             <div class="publications-grid">
 
-                <!-- Publication 1 -->
+                <!-- Paper 1 -->
                 <article class="pub-card" data-aos>
                     <div class="pub-card-tag">Paper</div>
                     <h3>Machine Learning for Automated Seabed Mapping</h3>
                     <p class="pub-authors">U. Di Laudo, S. Ceramicola, L. Manzoni</p>
-                    <p class="pub-journal">Ital-IA - Thematic Workshop, 2024</p>
+                    <p class="pub-journal">Ital-IA Thematic Workshop, 2024</p>
                     <p class="pub-description">
-                        We present a novel machine learning framework for the automated classification and segmentation of seabed morphologies using multibeam echosounder data.
+                        Novel ML framework for the automated classification and segmentation of seabed
+                        morphologies using multibeam echosounder data.
                     </p>
                     <div class="pub-links">
-                        <a href="https://ricerca.ogs.it/bitstream/20.500.14083/39423/1/556.pdf" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
+                        <a href="https://ricerca.ogs.it/bitstream/20.500.14083/39423/1/556.pdf"
+                           target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="external-link"></i> Read Paper
+                        </a>
                     </div>
                 </article>
 
-                <!-- Publication 2 -->
+                <!-- Paper 2 -->
                 <article class="pub-card" data-aos>
                     <div class="pub-card-tag">Paper</div>
-                    <h3>Machine Learning methods for the Atmosphere, the Ocean, and the Seabed</h3>
-                    <p class="pub-authors">V. Blasone, U. Di Laudo, G. Pietropolli, L. Bortolussi, S. Ceramicola, G. Cossarini, L. Manzoni</p>
-                    <p class="pub-journal">Ital-IA - Thematic Workshop, 2023</p>
+                    <h3>ML Methods for the Atmosphere, Ocean, and Seabed</h3>
+                    <p class="pub-authors">V. Blasone, U. Di Laudo, G. Pietropolli et al.</p>
+                    <p class="pub-journal">Ital-IA Thematic Workshop, 2023</p>
                     <p class="pub-description">
-                        A review of machine learning applications in atmospheric, oceanic, and seabed data analysis.
+                        A review of machine learning applications in atmospheric, oceanic, and seabed
+                        data analysis, covering methods and results across three domains.
                     </p>
                     <div class="pub-links">
-                        <a href="https://ceur-ws.org/Vol-3486/111.pdf" class="pub-link"><i data-lucide="external-link"></i> Paper</a>
+                        <a href="https://ceur-ws.org/Vol-3486/111.pdf" target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="external-link"></i> Read Paper
+                        </a>
                     </div>
                 </article>
 
-                <!-- Conference Talk 1 -->
+                <!-- Conferenza 1 -->
                 <article class="pub-card" data-aos>
                     <div class="pub-card-tag talk-tag">Conference</div>
-                    <h3>Artificial Intelligence and Machine Learning for the Automated Classification of the Seabed</h3>
+                    <h3>AI &amp; ML for Automated Seabed Classification</h3>
                     <p class="pub-authors">U. Di Laudo, S. Ceramicola, L. Manzoni</p>
-                    <p class="pub-journal">37th International Geological Congress, 25–31 August 2024, Busan, South Korea</p>
+                    <p class="pub-journal">37th International Geological Congress · Busan, South Korea · Aug 2024</p>
                 </article>
 
-                <!-- Conference Talk 2 -->
+                <!-- Conferenza 2 -->
                 <article class="pub-card" data-aos>
                     <div class="pub-card-tag talk-tag">Conference</div>
-                    <h3>Machine Learning for Automated Recognition of Seabed Morphologies</h3>
+                    <h3>ML for Automated Recognition of Seabed Morphologies</h3>
                     <p class="pub-authors">U. Di Laudo, S. Ceramicola, L. Manzoni</p>
-                    <p class="pub-journal">Geosciences and Information Technologies, 16–18 June 2025, Milazzo, Italy</p>
+                    <p class="pub-journal">Geosciences and Information Technologies · Milazzo, Italy · Jun 2025</p>
                 </article>
 
             </div>
         </div>
     </section>
 
+
     <!-- ============================================================
-         PROJECTS — Progetti personali open source
+         PROJECTS — Progetti open source personali
          ============================================================ -->
     <section id="projects" class="section">
+        <div class="section-marker" aria-hidden="true">05</div>
         <div class="container">
-            <h2 class="section-title" data-aos>
-                <span class="section-number">05.</span> Projects
-            </h2>
+            <h2 class="section-title" data-aos>Projects</h2>
 
-            <!-- Griglia con le card dei progetti -->
-            <div class="publications-grid">
+            <!-- Lista verticale di project card: numero decorativo a sinistra, contenuto a destra -->
+            <div class="projects-list">
 
-                <!-- Project 1 -->
-                <article class="pub-card" data-aos>
-                    <div class="pub-card-tag project-tag">Project</div>
-                    <h3>Personal Wallet Manager</h3>
-                    <p class="pub-authors">Open Source</p>
-                    <p class="pub-description">
-                        This repository provides a personal wallet manager application with a web-app interface (HTML/JS/CSS), a Telegram bot interface, and a graphical user interface (GUI) with Tkinter. The application allows users to add their expenses categorized into different types and generate statistical reports, such as bar and pie charts, for various time periods.
-                    </p>
-                    <div class="pub-links">
-                        <a href="https://github.com/udilaudo/Personal-Wallet" class="pub-link"><i data-lucide="github"></i> GitHub</a>
+                <!-- ODE Decoupling: Neural ODEs + Normalizing Flows per disaccoppiare sistemi di ODE -->
+                <article class="project-card" data-aos>
+                    <!-- Numero grande in serif (decorativo, opaco) -->
+                    <div class="project-num">01</div>
+                    <div class="project-body">
+                        <div class="pub-card-tag project-tag">Research</div>
+                        <h3>ODE Decoupling via Normalizing Flows</h3>
+                        <p class="pub-description">
+                            Combines Neural ODEs and Normalizing Flows to learn an invertible coordinate
+                            transformation that maps a coupled ODE system to a latent space where the
+                            equations become approximately decoupled. Each latent dimension is then
+                            governed by an independent neural network.
+                        </p>
+                        <a href="https://github.com/udilaudo/ODE_decoupling" target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="github"></i> View on GitHub
+                        </a>
                     </div>
                 </article>
 
-                <!-- Project 2 -->
-                <article class="pub-card" data-aos>
-                    <div class="pub-card-tag project-tag">Project</div>
-                    <h3>Personal Local RAG</h3>
-                    <p class="pub-authors">Open Source</p>
-                    <p class="pub-description">
-                        This repository provides a personal local RAG (Retrieval-Augmented Generation) system that allows users to interact with their own documents and data using GUI (Streamlit). It is completely local, meaning that all data and interactions are stored and processed on the user's machine, ensuring privacy and security.
-                    </p>
-                    <div class="pub-links">
-                        <a href="https://github.com/udilaudo/local-rag" class="pub-link"><i data-lucide="github"></i> GitHub</a>
+                <!-- Latent PINN: autoencoder + PINN nello spazio latente per PDE inverse problems -->
+                <article class="project-card" data-aos>
+                    <div class="project-num">02</div>
+                    <div class="project-body">
+                        <div class="pub-card-tag project-tag">Research</div>
+                        <h3>Latent-Space Physics-Informed Neural Network</h3>
+                        <p class="pub-description">
+                            PhD collaboration with Prof. Anselmi (University of Trieste). Jointly trains
+                            a convolutional autoencoder and a PINN entirely in the compressed latent space
+                            to solve the inverse problem for 2D PDEs — discovering unknown operator
+                            coefficients from simulation data without finite-difference approximations.
+                        </p>
+                        <a href="https://github.com/udilaudo/latent-pinn" target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="github"></i> View on GitHub
+                        </a>
                     </div>
                 </article>
 
-                <!-- Project 3 -->
-                <article class="pub-card" data-aos>
-                    <div class="pub-card-tag project-tag">Project</div>
-                    <h3>This Website</h3>
-                    <p class="pub-authors">Open Source</p>
-                    <p class="pub-description">
-                        Code for THIS website, built with HTML, CSS, and JavaScript.
-                    </p>
-                    <div class="pub-links">
-                        <a href="https://github.com/udilaudo/personal-web" class="pub-link"><i data-lucide="github"></i> GitHub</a>
+                <!-- Local RAG: sistema RAG offline basato su Streamlit -->
+                <article class="project-card" data-aos>
+                    <div class="project-num">03</div>
+                    <div class="project-body">
+                        <div class="pub-card-tag project-tag">Project</div>
+                        <h3>Personal Local RAG</h3>
+                        <p class="pub-description">
+                            Streamlit-based offline Retrieval-Augmented Generation system.
+                            Chat with your own documents — fully private, no cloud, no tracking.
+                            All data processed locally on your machine.
+                        </p>
+                        <a href="https://github.com/udilaudo/local-rag" target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="github"></i> View on GitHub
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Personal Wallet: suite finanze personali con dashboard, bot Telegram e GUI -->
+                <article class="project-card" data-aos>
+                    <div class="project-num">04</div>
+                    <div class="project-body">
+                        <div class="pub-card-tag project-tag">Project</div>
+                        <h3>Personal Wallet Manager</h3>
+                        <p class="pub-description">
+                            Full personal finance suite: web dashboard, Telegram bot notifications,
+                            and desktop GUI — all in one package. Track expenses and generate
+                            statistical reports (bar charts, pie charts) across time periods.
+                        </p>
+                        <a href="https://github.com/udilaudo/Personal-Wallet" target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="github"></i> View on GitHub
+                        </a>
+                    </div>
+                </article>
+
+                <!-- This Website: portfolio personale open-source -->
+                <article class="project-card" data-aos>
+                    <div class="project-num">05</div>
+                    <div class="project-body">
+                        <div class="pub-card-tag project-tag">Project</div>
+                        <h3>This Website</h3>
+                        <p class="pub-description">
+                            Open-source personal portfolio. Pure HTML, CSS &amp; JS —
+                            no frameworks, no tracking, no cookies. Self-hosted fonts.
+                            GDPR compliant and deployed on Cloudflare Pages.
+                        </p>
+                        <a href="https://github.com/udilaudo/personal-web" target="_blank" rel="noopener" class="pub-link">
+                            <i data-lucide="github"></i> View on GitHub
+                        </a>
                     </div>
                 </article>
 
@@ -490,49 +532,53 @@
         </div>
     </section>
 
-    <!-- ============================================================
-         CONTACT — Contact section with form
-         ============================================================ -->
-    <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title" data-aos>
-                <span class="section-number">06.</span> Contact
-            </h2>
 
-            <!-- Testo introduttivo + contatti diretti (no form, sito statico senza backend) -->
+    <!-- ============================================================
+         CONTACT — Sezione contatti (nessun form — sito statico)
+         ============================================================ -->
+    <section id="contact" class="section section-alt">
+        <div class="section-marker" aria-hidden="true">06</div>
+        <div class="container">
+            <!-- Titolo centrato -->
+            <h2 class="section-title section-title-center" data-aos>Let's Talk</h2>
+
+            <!-- Contenuto centrato con testo e metodi di contatto -->
             <div class="contact-content" data-aos>
-                <h3>Let's Talk!</h3>
-                <p>
-                    Interested in collaborating, have questions about my research,
-                    or just want to chat? Feel free to reach out!
+                <p class="contact-lead">
+                    Whether it's research, a project idea, or just a conversation about
+                    physics and data — I'm always open to new connections.
                 </p>
 
                 <div class="contact-details">
-                    <div class="contact-item">
+                    <!-- Link cliccabile per email -->
+                    <a href="mailto:umbertodilaudo@gmail.com" class="contact-item contact-item-link">
                         <i data-lucide="mail"></i>
                         <div>
                             <span class="contact-label">Email</span>
-                            <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
+                            <span class="contact-value">umbertodilaudo@gmail.com</span>
                         </div>
-                    </div>
+                    </a>
+                    <!-- Posizione (non cliccabile) -->
                     <div class="contact-item">
                         <i data-lucide="map-pin"></i>
                         <div>
                             <span class="contact-label">Location</span>
-                            <span>Trieste, Italy</span>
+                            <span class="contact-value">Trieste, Italy</span>
                         </div>
                     </div>
+                    <!-- Affiliazione (non cliccabile) -->
                     <div class="contact-item">
                         <i data-lucide="building-2"></i>
                         <div>
                             <span class="contact-label">Affiliation</span>
-                            <span>University of Trieste</span>
+                            <span class="contact-value">University of Trieste</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- ============================================================
          FOOTER
@@ -540,27 +586,34 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <!-- Copyright + link alla privacy policy -->
                 <p>
-                    &copy; 2026 Umberto Di Laudo. All rights reserved.
+                    &copy; 2026 Umberto Di Laudo
                     &nbsp;·&nbsp;
                     <a href="privacy.html">Privacy Policy</a>
+                    &nbsp;·&nbsp;
+                    <a href="cookies.html">Cookie Policy</a>
                 </p>
                 <div class="footer-links">
-                    <a href="https://github.com/udilaudo/" target="_blank"><i data-lucide="github"></i></a>
-                    <a href="https://linkedin.com/in/umbertodilaudo/" target="_blank"><i data-lucide="linkedin"></i></a>
-                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank"><i data-lucide="book-open"></i></a>
+                    <a href="https://github.com/udilaudo/"                              target="_blank" rel="noopener" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/umbertodilaudo/"                   target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar">
+                        <i data-lucide="book-open"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- "Back to top" button that appears on scroll -->
+    <!-- Bottone "torna su" — il JS aggiunge la classe "visible" dopo 500px di scroll -->
     <button id="back-to-top" aria-label="Back to top">
         <i data-lucide="arrow-up"></i>
     </button>
 
-    <!-- Our JavaScript -->
+    <!-- JavaScript del sito (invariato, gestisce: particelle, typing, navbar, AOS) -->
     <script src="script.js"></script>
 </body>
 </html>

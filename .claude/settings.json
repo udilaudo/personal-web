@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(# Scarica il CSS di Google Fonts per Inter \\(pesi 300,400,500,600,700,800\\) # User-agent di Chrome per ricevere i file .woff2 \\(formato moderno e compresso\\) curl -s -A \"\"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\"\" \\\\ \"\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap\"\" \\\\ echo \"\"CSS Inter scaricato\"\" cat /tmp/inter.css)",
+      "Bash(# Scarica il CSS di Google Fonts per Playfair Display \\(pesi 700 normal e italic\\) curl -s -A \"\"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\"\" \\\\ \"\"https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap\"\" \\\\ echo \"\"CSS Playfair scaricato\"\" cat /tmp/playfair.css)",
+      "Read(//private/tmp/**)",
+      "Bash(# Crea fonts.css sostituendo i percorsi remoti con quelli locali # sed -E sostituisce ogni URL completo di Google con solo il nome del file sed -E ''s|url\\\\\\(https://fonts\\\\.gstatic\\\\.com/[^/]+/[^/]+/[^/]+/\\([^\\)]+\\)\\\\\\)|url\\(\\\\1\\)|g'' /tmp/inter.css sed -E ''s|url\\\\\\(https://fonts\\\\.gstatic\\\\.com/[^/]+/[^/]+/[^/]+/[^/]+/\\([^\\)]+\\)\\\\\\)|url\\(\\\\1\\)|g'' /tmp/playfair.css cat /tmp/inter_local.css)",
+      "Bash(# Approccio:*)",
+      "Bash(python3:*)",
+      "Bash(__NEW_LINE_2e93982b79d52381__ echo \"\")",
+      "Bash(git stash:*)",
+      "Bash(git-filter-repo:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git fsck:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(grep:*)",
+      "Bash(conda run:*)",
+      "Bash(/Users/umbertodilaudo/miniconda3/envs/personal/bin/python:*)",
+      "Bash(gh repo:*)",
+      "WebFetch(domain:github.com)"
+    ],
+    "additionalDirectories": [
+      "/Users/umbertodilaudo/Desktop/Umberto/repo/personal-web",
+      "/Users/umbertodilaudo/Desktop/Umberto/repo/personal-web/https:/unpkg.com/lucide@0.574.0/dist/umd",
+      "/Users/umbertodilaudo/Desktop/Umberto/repo/personal-web/fonts"
+    ]
+  }
+}

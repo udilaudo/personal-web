@@ -159,9 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Scegli il colore in base al tema chiaro/scuro
+        // Scegli il colore delle particelle in base al tema
+        // chiaro: ambra-marrone (#8a5c19 = rgb 138,92,25)
+        // scuro:  oro caldo    (#c8a45a = rgb 200,164,90)
         const isDark = document.body.classList.contains('dark');
-        const color = isDark ? '148, 163, 184' : '99, 102, 241';
+        const color = isDark ? '200, 164, 90' : '138, 92, 25';
 
         particles.forEach((p, i) => {
 

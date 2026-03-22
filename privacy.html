@@ -3,84 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le pagine legali non vanno indicizzate dai motori di ricerca -->
+    <meta name="robots" content="noindex, nofollow">
     <title>Privacy Policy — Umberto Di Laudo</title>
 
-    <!-- Stessi font e icone del sito principale, serviti localmente -->
-    <link rel="stylesheet" href="fonts/fonts.css">
-    <script src="vendors/lucide.min.js"></script>
-    <link rel="stylesheet" href="style.css?v=2">
+    <!-- Google Fonts: Inter + Playfair Display — vedi sezione 7 di questa policy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons da jsDelivr CDN — vedi sezione 7 -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
 
-    <!-- Stile aggiuntivo solo per questa pagina:
-         centra il contenuto e lo rende leggibile come un documento -->
+    <!-- Foglio di stile principale — stesso del sito, per coerenza visiva -->
+    <link rel="stylesheet" href="style.css?v=3">
+
+    <!-- Stili specifici di questa pagina documento -->
     <style>
-        /* Contenitore del documento: larghezza ridotta per leggibilità */
-        .privacy-page {
-            max-width: 720px;
-            margin: 120px auto 80px;  /* 120px dall'alto per non finire sotto la navbar */
-            padding: 0 24px;
+        /* ── Wrapper generale — occupa tutto lo spazio sotto la navbar ── */
+        .legal-page {
+            min-height: 100vh;
         }
 
-        /* Titolo principale della pagina */
-        .privacy-page h1 {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            color: var(--color-heading);
+        /* ── Header della pagina: titolo + metadati ── */
+        .legal-header {
+            padding: var(--space-3xl) 0 var(--space-2xl);
+            border-bottom: 1px solid var(--border);
         }
 
-        /* Data di aggiornamento, in grigio sotto il titolo */
-        .privacy-page .last-updated {
-            font-size: 0.85rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 48px;
+        .legal-header-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 var(--space-xl);
         }
 
-        /* Titoli delle sezioni */
-        .privacy-page h2 {
-            font-size: 1.1rem;
-            margin-top: 40px;
-            margin-bottom: 12px;
-            color: var(--color-heading);
-        }
-
-        /* Testo normale delle sezioni */
-        .privacy-page p {
-            color: var(--color-text-secondary);
-            line-height: 1.8;
-            margin-bottom: 12px;
-        }
-
-        /* Link nel testo */
-        .privacy-page a {
-            color: var(--color-primary);
-            text-decoration: underline;
-        }
-
-        /* Bottone "torna alla home" in alto */
+        /* Link "← Back to home" in stile monospace / etichetta */
         .back-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: var(--color-primary);
-            font-size: 0.9rem;
-            margin-bottom: 40px;
-            text-decoration: none;
-            transition: opacity 0.2s;
+            gap: var(--space-sm);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xl);
+            transition: opacity var(--t-fast);
         }
-        .back-link:hover {
-            opacity: 0.75;
+        .back-link:hover { opacity: 0.65; }
+        /* Ridimensiona l'icona SVG di Lucide all'interno del link */
+        .back-link svg { width: 13px; height: 13px; }
+
+        /* Badge tipo-documento (es. "Legal Document") */
+        .legal-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-lo);
+            border: 1px solid var(--accent-md);
+            padding: 4px 10px;
+            border-radius: var(--radius);
+            margin-bottom: var(--space-md);
+        }
+
+        /* Titolo principale: grande, Playfair Display, responsivo */
+        .legal-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: var(--text-hi);
+            line-height: 1.1;
+            margin-bottom: var(--space-md);
+        }
+
+        /* Riga metadati: data, versione, giurisdizione */
+        .legal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xl);
+            margin-top: var(--space-lg);
+        }
+
+        .legal-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        /* Etichetta metadato (es. "Last Updated") */
+        .legal-meta-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* Valore metadato */
+        .legal-meta-value {
+            font-size: 0.88rem;
+            color: var(--text);
+        }
+
+        /* ── Corpo: sidebar TOC + contenuto principale ── */
+        .legal-body {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-xl);
+            display: grid;
+            /* Sidebar fissa a 200px, contenuto occupa il resto */
+            grid-template-columns: 200px 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+        }
+
+        /* ── Sidebar: Table of Contents ── */
+        .legal-toc {
+            /* Sticky: rimane visibile mentre si scrolla il contenuto */
+            position: sticky;
+            top: calc(var(--nav-h) + var(--space-xl));
+        }
+
+        .legal-toc-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Lista dei capitoli nella TOC */
+        .legal-toc ol {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        /* Ogni link nella TOC */
+        .legal-toc a {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--muted);
+            padding: 5px 8px;
+            border-left: 2px solid transparent;  /* bordo accent al hover */
+            border-radius: 0 var(--radius) var(--radius) 0;
+            line-height: 1.4;
+            transition: color var(--t-fast), border-color var(--t-fast), background var(--t-fast);
+        }
+        .legal-toc a:hover {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background: var(--accent-lo);
+        }
+
+        /* Link a Cookie Policy nella sidebar — un po' più distaccato */
+        .toc-footer-link {
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border);
+        }
+
+        .toc-footer-link a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            transition: color var(--t-fast);
+        }
+        .toc-footer-link a:hover { color: var(--accent); }
+        .toc-footer-link svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+        /* ── Contenuto principale (destra) ── */
+        .legal-content {
+            min-width: 0;  /* necessario per evitare overflow in CSS grid */
+        }
+
+        /* ── Singola sezione ── */
+        .legal-section {
+            padding-bottom: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+            border-bottom: 1px solid var(--border);
+            /* Offset per l'ancoraggio con navbar fissa */
+            scroll-margin-top: calc(var(--nav-h) + 24px);
+        }
+        .legal-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        /* Intestazione sezione: numero ambra + titolo */
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Numero progressivo in monospace ambra (es. "01.") */
+        .section-num {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+        }
+
+        /* Titolo h2 della sezione */
+        .legal-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--text-hi);
+            line-height: 1.2;
+        }
+
+        /* Paragrafo corpo del documento */
+        .legal-section p {
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: var(--space-md);
+            font-size: 0.95rem;
+        }
+        .legal-section p:last-child { margin-bottom: 0; }
+
+        /* Link nel testo */
+        .legal-section a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-color: var(--accent-md);
+            text-underline-offset: 3px;
+            transition: text-decoration-color var(--t-fast);
+        }
+        .legal-section a:hover { text-decoration-color: var(--accent); }
+
+        /* Box evidenza — per informazioni importanti come "nessun cookie" */
+        .legal-highlight {
+            background: var(--accent-lo);
+            border: 1px solid var(--accent-md);
+            border-left: 3px solid var(--accent);  /* bordo sinistro marcato */
+            border-radius: var(--radius);
+            padding: var(--space-md) var(--space-lg);
+            margin: var(--space-md) 0;
+        }
+        .legal-highlight p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        /* Codice inline (es. localStorage) */
+        .legal-section code {
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 2px 6px;
+            border-radius: var(--radius);
+            color: var(--accent);
+        }
+
+        /* ── Tabella diritti GDPR ── */
+        .rights-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            font-size: 0.88rem;
+        }
+
+        /* Intestazioni colonne */
+        .rights-table th {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: left;
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border-hi);
+        }
+
+        /* Celle dati */
+        .rights-table td {
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+            line-height: 1.55;
+        }
+        .rights-table tr:last-child td { border-bottom: none; }
+        .rights-table tr:hover td { background: var(--surface); }
+
+        /* Colonna nome diritto: evidenziata */
+        .rights-table .right-name {
+            font-weight: 600;
+            color: var(--text-hi);
+            white-space: nowrap;
+        }
+
+        /* ── Responsive: sotto 800px la sidebar si sposta sopra il contenuto ── */
+        @media (max-width: 800px) {
+            .legal-body {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            /* Su mobile la TOC non è sticky, si mostra inline */
+            .legal-toc {
+                position: static;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: var(--space-lg);
+            }
+
+            /* La tabella può scorrere orizzontalmente su schermi piccoli */
+            .rights-table { font-size: 0.82rem; }
+
+            .rights-table th:last-child,
+            .rights-table td:last-child { display: none; }  /* nasconde colonna extra su mobile */
+        }
+
+        @media (max-width: 500px) {
+            .legal-header-inner,
+            .legal-body {
+                padding-left: var(--space-md);
+                padding-right: var(--space-md);
+            }
+
+            .legal-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- ============================================================
-         NAVBAR — stessa del sito principale
+         NAVBAR — Identica al sito principale.
+         I link puntano alle sezioni di index.html (sito statico,
+         nessun routing SPA).
          ============================================================ -->
     <nav id="navbar">
         <div class="nav-container">
+
+            <!-- Logo / nome abbreviato -->
             <a href="index.html" class="nav-logo">UDL</a>
 
-            <!-- Desktop links -->
+            <!-- Link di navigazione desktop -->
             <ul class="nav-links">
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#education">Education</a></li>
@@ -90,13 +364,13 @@
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
 
-            <!-- Toggle tema chiaro/scuro -->
+            <!-- Bottone toggle tema chiaro/scuro -->
             <button id="theme-toggle" aria-label="Toggle theme">
                 <i data-lucide="moon" class="icon-moon"></i>
-                <i data-lucide="sun" class="icon-sun"></i>
+                <i data-lucide="sun"  class="icon-sun"></i>
             </button>
 
-            <!-- Hamburger mobile -->
+            <!-- Hamburger per mobile -->
             <button id="menu-toggle" aria-label="Open menu">
                 <span></span>
                 <span></span>
@@ -104,7 +378,7 @@
             </button>
         </div>
 
-        <!-- Menu mobile -->
+        <!-- Menu mobile a tendina -->
         <div id="mobile-menu">
             <a href="index.html#about">About</a>
             <a href="index.html#education">Education</a>
@@ -115,167 +389,602 @@
         </div>
     </nav>
 
+
     <!-- ============================================================
-         CONTENUTO DELLA PRIVACY POLICY
+         HEADER DELLA PAGINA — Titolo, badge, metadati
          ============================================================ -->
-    <main class="privacy-page">
+    <div class="legal-page">
+        <header class="legal-header">
+            <div class="legal-header-inner">
 
-        <!-- Torna alla home -->
-        <a href="index.html" class="back-link">
-            <i data-lucide="arrow-left"></i>
-            Back to home
-        </a>
+                <!-- Freccia di ritorno alla home -->
+                <a href="index.html" class="back-link">
+                    <i data-lucide="arrow-left"></i>
+                    Back to home
+                </a>
 
-        <h1>Privacy Policy</h1>
-        <p class="last-updated">Last updated: February 2026</p>
+                <!-- Badge tipo documento -->
+                <div class="legal-badge">Legal Document</div>
 
-        <!-- 1. CHI GESTISCE IL SITO -->
-        <h2>1. Data Controller</h2>
-        <p>
-            This website is a personal portfolio managed by <strong>Umberto Di Laudo</strong>,
-            based in Trieste, Italy. You can contact me at
-            <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>.
-        </p>
+                <!-- Titolo -->
+                <h1 class="legal-title">Privacy Policy</h1>
 
-        <!-- 2. DATI RACCOLTI DIRETTAMENTE -->
-        <h2>2. Data collected by this website</h2>
-        <p>
-            This website <strong>does not collect, store, or process any personal data</strong>
-            from visitors directly. There are no registration forms, no login systems,
-            and no contact forms that submit data to a server.
-        </p>
-        <p>
-            The only data stored on your device is a <strong>theme preference</strong>
-            (light or dark mode), saved in your browser's <code>localStorage</code>.
-            This information never leaves your device and is not accessible by the server.
-        </p>
+                <!-- Metadati del documento -->
+                <div class="legal-meta">
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Last Updated</span>
+                        <span class="legal-meta-value">March 2026</span>
+                    </div>
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Jurisdiction</span>
+                        <span class="legal-meta-value">GDPR (EU) · Italy</span>
+                    </div>
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Data Controller</span>
+                        <span class="legal-meta-value">Umberto Di Laudo</span>
+                    </div>
+                    <div class="legal-meta-item">
+                        <span class="legal-meta-label">Scope</span>
+                        <span class="legal-meta-value">umbertodilaudo.pages.dev</span>
+                    </div>
+                </div>
 
-        <!-- 3. CLOUDFLARE PAGES -->
-        <h2>3. Cloudflare Pages (hosting provider)</h2>
-        <p>
-            This website is <strong>hosted on Cloudflare Pages</strong>, Cloudflare's static
-            site hosting platform. Cloudflare is therefore both the hosting provider and the
-            content delivery network (CDN). When you visit this site, your request is served
-            directly by Cloudflare's global edge network, which may process your
-            <strong>IP address</strong>, browser type, and request timestamps for the
-            purpose of delivering content and protecting against malicious traffic.
-        </p>
-        <p>
-            Cloudflare processes this data as a <strong>data processor</strong> on my behalf,
-            under its own Data Processing Addendum (DPA) compliant with GDPR — including
-            EU Standard Contractual Clauses (SCCs) for international data transfers to the US.
-            Cloudflare does not sell this data or use it for advertising purposes. For full
-            details, see
-            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">
-                Cloudflare's Privacy Policy
-            </a>.
-        </p>
-        <p>
-            The legal basis for this processing is <strong>legitimate interest</strong>
-            (Art. 6(1)(f) GDPR): it is technically necessary to host and deliver the website
-            and protect it from abuse.
-        </p>
+            </div>
+        </header>
 
-        <!-- 4. COOKIE -->
-        <h2>4. Cookies</h2>
-        <p>
-            This website does <strong>not use cookies</strong> of any kind — no analytics
-            cookies, no advertising cookies, no tracking cookies. No cookie banner is
-            displayed because no consent is required.
-        </p>
 
-        <!-- 5. LINK ESTERNI -->
-        <h2>5. External links</h2>
-        <p>
-            This website contains links to external services (GitHub, LinkedIn, Google Scholar,
-            academic repositories). Once you leave this site, their respective privacy policies apply.
-            I have no control over and assume no responsibility for the content or privacy
-            practices of those sites.
-        </p>
+        <!-- ============================================================
+             BODY: SIDEBAR TOC + CONTENUTO
+             ============================================================ -->
+        <div class="legal-body">
 
-        <!-- 6. FONT E LIBRERIE -->
-        <h2>6. Fonts and libraries</h2>
-        <p>
-            All fonts (Inter, Playfair Display) and icon libraries (Lucide Icons) are
-            <strong>self-hosted</strong> on this website. No data is sent to Google Fonts,
-            unpkg, or any other external CDN when you visit this site.
-        </p>
+            <!-- ── SIDEBAR: Table of Contents ── -->
+            <aside class="legal-toc" aria-label="Table of contents">
+                <p class="legal-toc-label">Contents</p>
+                <ol>
+                    <li><a href="#s1">Data Controller</a></li>
+                    <li><a href="#s2">Data We Collect</a></li>
+                    <li><a href="#s3">Legal Basis</a></li>
+                    <li><a href="#s4">Cloudflare Hosting</a></li>
+                    <li><a href="#s5">localStorage</a></li>
+                    <li><a href="#s6">Cookies</a></li>
+                    <li><a href="#s7">Fonts &amp; Libraries</a></li>
+                    <li><a href="#s8">External Links</a></li>
+                    <li><a href="#s9">Data Retention</a></li>
+                    <li><a href="#s10">Your GDPR Rights</a></li>
+                    <li><a href="#s11">Policy Updates</a></li>
+                    <li><a href="#s12">Contact</a></li>
+                </ol>
 
-        <!-- 7. DIRITTI GDPR -->
-        <h2>7. Your rights under GDPR</h2>
-        <p>
-            Since this website does not collect personal data directly, there is no personal
-            data to access, correct, or delete. For any data processed by Cloudflare's
-            infrastructure, you may contact Cloudflare directly or refer to their
-            <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">
-                privacy policy
-            </a>.
-        </p>
-        <p>
-            For any questions or requests, feel free to contact me at
-            <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>.
-        </p>
+                <!-- Link rapido alla Cookie Policy -->
+                <div class="toc-footer-link">
+                    <a href="cookies.html">
+                        <i data-lucide="external-link"></i>
+                        Cookie Policy
+                    </a>
+                </div>
+            </aside>
 
-    </main>
+
+            <!-- ── CONTENUTO PRINCIPALE ── -->
+            <main class="legal-content">
+
+                <!-- INTRODUZIONE -->
+                <section class="legal-section" id="intro">
+                    <p>
+                        This Privacy Policy explains how this personal portfolio website handles
+                        information when you visit it. This site is designed with privacy as a
+                        first principle: <strong>no analytics, no tracking, no advertising,
+                        no personal data collected directly by the site owner.</strong>
+                    </p>
+                    <p>
+                        Please read this policy alongside the
+                        <a href="cookies.html">Cookie Policy</a>,
+                        which specifically covers cookie and local storage usage.
+                    </p>
+                </section>
+
+                <!-- 1. DATA CONTROLLER -->
+                <section class="legal-section" id="s1">
+                    <div class="section-heading">
+                        <span class="section-num">01.</span>
+                        <h2>Data Controller</h2>
+                    </div>
+                    <p>
+                        The data controller for this website is:
+                    </p>
+                    <p>
+                        <strong>Umberto Di Laudo</strong><br>
+                        Trieste, Italy<br>
+                        Email: <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
+                    </p>
+                    <p>
+                        As this is a personal portfolio with no commercial activity and no
+                        direct data collection, no formal Data Protection Officer (DPO)
+                        is required under Art. 37 GDPR.
+                    </p>
+                </section>
+
+                <!-- 2. DATA WE COLLECT -->
+                <section class="legal-section" id="s2">
+                    <div class="section-heading">
+                        <span class="section-num">02.</span>
+                        <h2>Data We Collect</h2>
+                    </div>
+
+                    <div class="legal-highlight">
+                        <p>
+                            <strong>This website does not collect, store, or process
+                            any personal data directly.</strong> There are no registration
+                            forms, no login systems, no contact forms that submit data
+                            to a server, and no analytics tracking.
+                        </p>
+                    </div>
+
+                    <p>
+                        The data that may be processed by third parties in connection
+                        with your visit is:
+                    </p>
+                    <p>
+                        <strong>Infrastructure data (Cloudflare):</strong> When you request
+                        any page, your IP address, browser user-agent, request URL, and
+                        timestamp are processed by Cloudflare, the hosting and CDN provider.
+                        See Section 4 for full details.
+                    </p>
+                    <p>
+                        <strong>Font loading data (Google Fonts):</strong> When a page loads,
+                        your browser makes a request to Google's font servers
+                        (<code>fonts.googleapis.com</code> / <code>fonts.gstatic.com</code>)
+                        to download the typefaces used by this site. This request includes
+                        your IP address, browser user-agent, and the referring URL.
+                        See Section 7 for full details.
+                    </p>
+                    <p>
+                        <strong>Theme preference (your device only):</strong> If you toggle
+                        the light/dark mode, your preference is stored in your browser's
+                        <code>localStorage</code>. This data never leaves your device.
+                        See Section 5.
+                    </p>
+                </section>
+
+                <!-- 3. LEGAL BASIS -->
+                <section class="legal-section" id="s3">
+                    <div class="section-heading">
+                        <span class="section-num">03.</span>
+                        <h2>Legal Basis for Processing</h2>
+                    </div>
+                    <p>
+                        Under the GDPR (Regulation (EU) 2016/679), data processing requires
+                        a lawful basis under Article 6. The relevant bases for this site are:
+                    </p>
+                    <p>
+                        <strong>Legitimate interest — Cloudflare (Art. 6(1)(f) GDPR):</strong>
+                        The infrastructure data processed by Cloudflare is strictly necessary
+                        to technically deliver the website and protect it from abuse (DDoS,
+                        bot traffic). This would not be possible without handling basic
+                        connection data.
+                    </p>
+                    <p>
+                        <strong>Legitimate interest — Google Fonts (Art. 6(1)(f) GDPR):</strong>
+                        Loading fonts from Google Fonts is necessary to render the website with
+                        the intended typography. The site owner has a legitimate interest in
+                        presenting the site in a visually correct form, and this interest is
+                        not overridden by the visitor's rights given the minimal, non-profiling
+                        nature of the data involved. Google does not use font-loading connection
+                        data for advertising profiling.
+                    </p>
+                    <p>
+                        No consent-based processing (Art. 6(1)(a)) is required because
+                        this site does not use analytics, advertising, or marketing trackers.
+                    </p>
+                </section>
+
+                <!-- 4. CLOUDFLARE HOSTING -->
+                <section class="legal-section" id="s4">
+                    <div class="section-heading">
+                        <span class="section-num">04.</span>
+                        <h2>Cloudflare Pages (Hosting Provider)</h2>
+                    </div>
+                    <p>
+                        This website is hosted and delivered via
+                        <strong>Cloudflare Pages</strong>, a static site hosting
+                        service operated by Cloudflare, Inc. (101 Townsend St,
+                        San Francisco, CA 94107, USA).
+                    </p>
+                    <p>
+                        When you visit this site, your browser connects to Cloudflare's
+                        global edge network, which may process the following data as
+                        part of normal HTTP/S request handling:
+                    </p>
+                    <p>
+                        IP address · browser user-agent string · HTTP request headers
+                        · URL requested · timestamp · HTTP response codes
+                    </p>
+                    <p>
+                        Cloudflare acts as a <strong>data processor</strong> on behalf
+                        of the site owner, under a Data Processing Addendum (DPA)
+                        compliant with GDPR, including Standard Contractual Clauses (SCCs)
+                        for transfers to the United States (pursuant to Art. 46 GDPR).
+                        Cloudflare does not use this data for advertising or sell it to
+                        third parties.
+                    </p>
+                    <p>
+                        For complete details, refer to Cloudflare's own privacy policy:
+                        <a href="https://www.cloudflare.com/privacypolicy/"
+                           target="_blank" rel="noopener noreferrer">
+                            cloudflare.com/privacypolicy
+                        </a>.
+                    </p>
+                </section>
+
+                <!-- 5. LOCALSTORAGE -->
+                <section class="legal-section" id="s5">
+                    <div class="section-heading">
+                        <span class="section-num">05.</span>
+                        <h2>localStorage (Theme Preference)</h2>
+                    </div>
+                    <p>
+                        When you toggle the light or dark colour theme, the site saves
+                        your preference as the string <code>"light"</code> or
+                        <code>"dark"</code> in your browser's <code>localStorage</code>
+                        under the key <code>"theme"</code>.
+                    </p>
+
+                    <div class="legal-highlight">
+                        <p>
+                            <strong>This data never leaves your device.</strong>
+                            It is stored locally in your browser and is only read
+                            by this page to restore your chosen theme on future visits.
+                            No server receives this information. It is not personal data
+                            under the GDPR, as it cannot identify you.
+                        </p>
+                    </div>
+
+                    <p>
+                        You can clear this preference at any time via your browser's
+                        developer tools (Application → Local Storage → delete the
+                        <code>theme</code> key) or by clearing your browser's site data.
+                    </p>
+                </section>
+
+                <!-- 6. COOKIES -->
+                <section class="legal-section" id="s6">
+                    <div class="section-heading">
+                        <span class="section-num">06.</span>
+                        <h2>Cookies</h2>
+                    </div>
+
+                    <div class="legal-highlight">
+                        <p>
+                            <strong>The site owner does not set any cookies.</strong>
+                            No analytics cookies, advertising cookies, session cookies,
+                            or tracking pixels are placed by this website.
+                        </p>
+                    </div>
+
+                    <p>
+                        Cloudflare, as the infrastructure provider, may set strictly
+                        necessary technical cookies (e.g. <code>__cf_bm</code> for
+                        bot management, valid for 30 minutes) as part of its security
+                        and load-balancing operations. These cookies are essential for
+                        the technical delivery of the site and do not track users across
+                        websites. No consent banner is required for strictly necessary cookies
+                        under the ePrivacy Directive.
+                    </p>
+                    <p>
+                        For a full breakdown of all cookie-related information, including
+                        browser opt-out instructions, please see the
+                        <a href="cookies.html">Cookie Policy</a>.
+                    </p>
+                </section>
+
+                <!-- 7. FONTS & LIBRARIES -->
+                <section class="legal-section" id="s7">
+                    <div class="section-heading">
+                        <span class="section-num">07.</span>
+                        <h2>Google Fonts &amp; Libraries</h2>
+                    </div>
+                    <p>
+                        This site loads the typefaces <em>Inter</em> and
+                        <em>Playfair Display</em> from <strong>Google Fonts</strong>,
+                        a free font hosting service operated by Google LLC
+                        (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA).
+                    </p>
+                    <p>
+                        When your browser loads any page on this site, it makes an
+                        HTTP request to <code>fonts.googleapis.com</code> (to fetch
+                        the CSS stylesheet) and to <code>fonts.gstatic.com</code>
+                        (to download the font files). These requests send to Google:
+                    </p>
+                    <p>
+                        IP address · browser user-agent string · referrer URL ·
+                        timestamp of the request
+                    </p>
+                    <p>
+                        According to Google's own statements, Google Fonts does not
+                        use font-loading data to build advertising profiles, does not
+                        set cookies via the Fonts API, and stores font-request logs
+                        for a limited period for security and abuse-prevention purposes.
+                        Data may be transferred to the United States under Google's
+                        standard contractual clauses (SCCs) pursuant to Art. 46 GDPR.
+                    </p>
+                    <p>
+                        The legal basis for this transfer is legitimate interest
+                        (Art. 6(1)(f) GDPR) — the font loading is necessary for the
+                        correct visual rendering of the website. For full details,
+                        refer to Google's privacy policy:
+                        <a href="https://policies.google.com/privacy"
+                           target="_blank" rel="noopener noreferrer">
+                            policies.google.com/privacy
+                        </a>
+                        and Google Fonts FAQ:
+                        <a href="https://developers.google.com/fonts/faq/privacy"
+                           target="_blank" rel="noopener noreferrer">
+                            developers.google.com/fonts/faq/privacy
+                        </a>.
+                    </p>
+                    <p>
+                        The icon library (<em>Lucide Icons</em>) is loaded from
+                        <strong>jsDelivr</strong>, a free open-source CDN operated
+                        by Prospect One sp. z o.o. (Warsaw, Poland — EU).
+                        When a page loads, your browser requests the script file from
+                        <code>cdn.jsdelivr.net</code>, which sends your IP address
+                        and browser user-agent to jsDelivr's servers. jsDelivr does
+                        not use this data for advertising and does not set tracking
+                        cookies. The legal basis is legitimate interest (Art. 6(1)(f)
+                        GDPR). See jsDelivr's privacy policy:
+                        <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net"
+                           target="_blank" rel="noopener noreferrer">
+                            jsdelivr.com/privacy-policy
+                        </a>.
+                    </p>
+                </section>
+
+                <!-- 8. EXTERNAL LINKS -->
+                <section class="legal-section" id="s8">
+                    <div class="section-heading">
+                        <span class="section-num">08.</span>
+                        <h2>External Links</h2>
+                    </div>
+                    <p>
+                        This website contains links to external platforms and academic
+                        repositories, including:
+                    </p>
+                    <p>
+                        GitHub (github.com) · LinkedIn (linkedin.com) ·
+                        Google Scholar (scholar.google.com) · University of Trieste
+                        repository (hdl.handle.net) · University of Bologna
+                        repository (amslaurea.unibo.it) · CEUR-WS (ceur-ws.org) ·
+                        OGS research archive (ricerca.ogs.it)
+                    </p>
+                    <p>
+                        When you click any external link, you leave this site and are
+                        subject to the privacy policy of the destination. The site owner
+                        has no control over and bears no responsibility for the content
+                        or data practices of third-party websites. All external links
+                        include <code>rel="noopener noreferrer"</code> to prevent the
+                        destination from accessing this page's context.
+                    </p>
+                </section>
+
+                <!-- 9. DATA RETENTION -->
+                <section class="legal-section" id="s9">
+                    <div class="section-heading">
+                        <span class="section-num">09.</span>
+                        <h2>Data Retention</h2>
+                    </div>
+                    <p>
+                        The site owner does not store any personal data and therefore
+                        has no retention period to specify.
+                    </p>
+                    <p>
+                        For infrastructure logs retained by Cloudflare, refer to
+                        Cloudflare's data retention policies at
+                        <a href="https://www.cloudflare.com/privacypolicy/"
+                           target="_blank" rel="noopener noreferrer">
+                            cloudflare.com/privacypolicy
+                        </a>.
+                        Cloudflare's standard log retention for free and Pages tier
+                        accounts is typically limited (aggregated metrics only,
+                        no raw log storage by default).
+                    </p>
+                    <p>
+                        The <code>localStorage</code> theme preference persists in
+                        your browser until you manually clear it or your browser
+                        clears site data.
+                    </p>
+                </section>
+
+                <!-- 10. YOUR GDPR RIGHTS -->
+                <section class="legal-section" id="s10">
+                    <div class="section-heading">
+                        <span class="section-num">10.</span>
+                        <h2>Your Rights under GDPR</h2>
+                    </div>
+                    <p>
+                        Under the General Data Protection Regulation (GDPR), EU/EEA
+                        residents have the following rights regarding their personal data:
+                    </p>
+
+                    <!-- Tabella diritti GDPR -->
+                    <table class="rights-table" aria-label="GDPR rights">
+                        <thead>
+                            <tr>
+                                <th>Right</th>
+                                <th>Description</th>
+                                <th>Applicability here</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="right-name">Access (Art. 15)</td>
+                                <td>Obtain confirmation of whether your data is processed and receive a copy.</td>
+                                <td>No personal data held by site owner. For Cloudflare data, contact Cloudflare.</td>
+                            </tr>
+                            <tr>
+                                <td class="right-name">Rectification (Art. 16)</td>
+                                <td>Request correction of inaccurate personal data.</td>
+                                <td>Not applicable — no data stored.</td>
+                            </tr>
+                            <tr>
+                                <td class="right-name">Erasure (Art. 17)</td>
+                                <td>Request deletion of personal data ("right to be forgotten").</td>
+                                <td>localStorage: delete via browser. Cloudflare logs: contact Cloudflare.</td>
+                            </tr>
+                            <tr>
+                                <td class="right-name">Restriction (Art. 18)</td>
+                                <td>Request restriction of processing under specific conditions.</td>
+                                <td>Not applicable — no processing by site owner.</td>
+                            </tr>
+                            <tr>
+                                <td class="right-name">Portability (Art. 20)</td>
+                                <td>Receive your data in a portable, machine-readable format.</td>
+                                <td>Not applicable — no data held.</td>
+                            </tr>
+                            <tr>
+                                <td class="right-name">Object (Art. 21)</td>
+                                <td>Object to processing based on legitimate interest.</td>
+                                <td>You may contact <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a> with any objections.</td>
+                            </tr>
+                            <tr>
+                                <td class="right-name">Lodge Complaint</td>
+                                <td>File a complaint with a supervisory authority.</td>
+                                <td>Italian DPA: <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">garanteprivacy.it</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>
+                        Since this website does not directly collect personal data,
+                        most rights are not applicable in practice. For data processed
+                        by Cloudflare's infrastructure, please contact Cloudflare's
+                        privacy team directly.
+                    </p>
+                </section>
+
+                <!-- 11. POLICY UPDATES -->
+                <section class="legal-section" id="s11">
+                    <div class="section-heading">
+                        <span class="section-num">11.</span>
+                        <h2>Policy Updates</h2>
+                    </div>
+                    <p>
+                        This Privacy Policy may be updated from time to time to reflect
+                        changes in the website's infrastructure, applicable law, or
+                        best practices. The "Last Updated" date at the top of this page
+                        indicates when the most recent revision was made.
+                    </p>
+                    <p>
+                        Continued use of this website after any update constitutes
+                        acceptance of the revised policy. As no personal data is collected,
+                        no individual notification of changes is required or possible.
+                    </p>
+                </section>
+
+                <!-- 12. CONTACT -->
+                <section class="legal-section" id="s12">
+                    <div class="section-heading">
+                        <span class="section-num">12.</span>
+                        <h2>Contact</h2>
+                    </div>
+                    <p>
+                        For any questions about this Privacy Policy, to exercise your
+                        rights, or to raise a concern, please contact:
+                    </p>
+                    <p>
+                        <strong>Umberto Di Laudo</strong><br>
+                        <a href="mailto:umbertodilaudo@gmail.com">umbertodilaudo@gmail.com</a>
+                    </p>
+                    <p>
+                        You also have the right to lodge a complaint with the Italian
+                        Data Protection Authority (Garante per la protezione dei dati
+                        personali) at
+                        <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">
+                            garanteprivacy.it
+                        </a>.
+                    </p>
+                </section>
+
+            </main>
+        </div><!-- fine .legal-body -->
+    </div><!-- fine .legal-page -->
+
 
     <!-- ============================================================
-         FOOTER
+         FOOTER — identico al sito principale
          ============================================================ -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2026 Umberto Di Laudo. All rights reserved.</p>
+                <p>
+                    &copy; 2026 Umberto Di Laudo
+                    &nbsp;·&nbsp;
+                    <a href="privacy.html">Privacy Policy</a>
+                    &nbsp;·&nbsp;
+                    <a href="cookies.html">Cookie Policy</a>
+                </p>
                 <div class="footer-links">
-                    <a href="https://github.com/udilaudo/" target="_blank"><i data-lucide="github"></i></a>
-                    <a href="https://linkedin.com/in/umbertodilaudo/" target="_blank"><i data-lucide="linkedin"></i></a>
-                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ" target="_blank"><i data-lucide="book-open"></i></a>
+                    <a href="https://github.com/udilaudo/"
+                       target="_blank" rel="noopener" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/umbertodilaudo/"
+                       target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?hl=it&user=RCdOlOkAAAAJ"
+                       target="_blank" rel="noopener" aria-label="Google Scholar">
+                        <i data-lucide="book-open"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </footer>
 
+
     <!-- ============================================================
-         SCRIPT — solo la parte necessaria per questa pagina:
-         icone Lucide, tema chiaro/scuro, navbar scroll
+         SCRIPT — Solo le funzionalità necessarie per questa pagina:
+         icone, tema, navbar scroll, menu mobile.
+         (NON includiamo particelle, typing, AOS — non servono qui)
          ============================================================ -->
     <script>
-        // Inizializza le icone Lucide (stessa chiamata del sito principale)
+        // Inizializza tutte le icone Lucide presenti nella pagina
         lucide.createIcons();
 
-        // ---- TEMA CHIARO / SCURO ----
-        // Legge la preferenza salvata nel localStorage e la applica subito
+        // ── TEMA CHIARO / SCURO ──
+        // Legge la preferenza salvata (stessa chiave del sito principale)
+        // così il tema scelto dall'utente viene mantenuto tra le pagine
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.body.classList.add('dark');
         }
 
-        // Bottone toggle: cambia tema e salva la scelta
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
+        // Toggle tema al click del bottone
+        document.getElementById('theme-toggle').addEventListener('click', () => {
             const isDark = document.body.classList.toggle('dark');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
-        // ---- NAVBAR: sfondo quando si scrolla ----
-        // Aggiunge la classe 'scrolled' alla navbar dopo 50px di scroll
-        // (stessa logica del sito principale, per coerenza visiva)
+        // ── NAVBAR: aggiunge ombra dopo 50px di scroll ──
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // ---- MENU MOBILE ----
+        // ── MENU MOBILE (hamburger) ──
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
+
         menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            menuToggle.classList.toggle('open');
+            menuToggle.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
         });
-        // Chiudi il menu mobile quando si clicca un link
+
+        // Chiudi il menu quando si clicca un link
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                menuToggle.classList.remove('open');
+                menuToggle.classList.remove('active');
+                mobileMenu.classList.remove('active');
             });
         });
     </script>
